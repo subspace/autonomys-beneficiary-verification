@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog';
 import { Alert, AlertDescription } from '../ui/alert';
 import { Button } from '../ui/button';
 import { WalletOption } from './wallet-option';
@@ -36,9 +36,7 @@ export const WalletModal: React.FC<WalletModalProps> = ({ open, onOpenChange }) 
     try {
       setConnectingWallet(extensionName);
       clearError();
-      console.log(`User clicked to connect ${extensionName}`);
       await connectWallet(extensionName);
-      console.log(`Successfully connected to ${extensionName}, closing modal`);
       onOpenChange(false);
     } catch (error) {
       console.error('Connection failed in modal:', error);
@@ -73,6 +71,9 @@ export const WalletModal: React.FC<WalletModalProps> = ({ open, onOpenChange }) 
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Connect Wallet</DialogTitle>
+          <DialogDescription>
+            Choose a wallet extension to connect to your Substrate account.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4">

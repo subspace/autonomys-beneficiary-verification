@@ -1,14 +1,24 @@
-# Substrate Wallet Integration Demo
+# Autonomys EVM Address Verification
 
-A standalone demo project showcasing the Substrate wallet integration extracted from the Autonomys staking portal. This project demonstrates how to integrate multiple Substrate wallets (Talisman, SubWallet, Polkadot.js) into a React application.
+A React application that allows users to verify their EVM addresses by submitting them to the Autonomys Network through a `system.remark` transaction. This creates a permanent on-chain record linking a Substrate wallet to an EVM address for verification purposes.
 
 ## Features
 
+### Core Functionality
+✅ **EVM Address Verification** - Submit EVM addresses to Autonomys Network via `system.remark` transactions  
+✅ **Address Validation** - Full EIP-55 checksum validation for EVM addresses  
+✅ **Transaction Tracking** - Real-time status updates and transaction hash display  
+✅ **Network Integration** - Direct connection to Autonomys Network mainnet  
+
+### Wallet Integration
 ✅ **Multi-wallet support** - Talisman, SubWallet, and Polkadot.js extensions  
 ✅ **Persistent connections** - Auto-reconnect on page reload  
 ✅ **Multi-account management** - Easy account switching  
-✅ **Error handling** - User-friendly error messages and retry logic  
-✅ **TypeScript support** - Full type safety  
+✅ **Transaction signing** - Secure transaction signing through wallet extensions  
+
+### Technical Features
+✅ **Error handling** - Comprehensive error handling and user-friendly messages  
+✅ **TypeScript support** - Full type safety throughout the application  
 ✅ **Modern React patterns** - Hooks, functional components, Zustand state management  
 ✅ **Responsive UI** - Built with Tailwind CSS and Radix UI components  
 
@@ -40,6 +50,32 @@ yarn preview
 ```
 
 The app will be available at `http://localhost:5173`
+
+## How Verification Works
+
+### The Process
+1. **Connect Wallet**: Connect your Substrate wallet (Talisman, SubWallet, or Polkadot.js)
+2. **Enter EVM Address**: Input your EVM address with automatic checksum validation
+3. **Submit Transaction**: Sign and submit a `system.remark` transaction to Autonomys Network
+4. **Get Transaction Hash**: Receive the transaction hash as proof of verification
+5. **Share with Team**: Send the transaction hash to the project team for validation
+
+### What Happens On-Chain
+- The application creates a `system.remark` extrinsic with content: `EVM_ADDRESS:0xYourAddress`
+- This transaction is permanently recorded on the Autonomys blockchain
+- The transaction links your Substrate account to your EVM address
+- The transaction hash serves as cryptographic proof of this link
+
+### Transaction Content Format
+```
+EVM_ADDRESS:0x742d35Cc6634C0532925a3b8D4e5D7e78c7c8e5B
+```
+
+### Explorer Integration
+Successful transactions can be viewed on the Autonomys Network explorer:
+```
+https://autonomys.subscan.io/extrinsic/[transaction-hash]
+```
 
 ## Project Structure
 

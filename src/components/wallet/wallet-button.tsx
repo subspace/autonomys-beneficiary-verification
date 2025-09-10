@@ -37,9 +37,8 @@ const AccountDropdown: React.FC<AccountDropdownProps> = ({
       <div className="p-2">
         <div className="text-xs text-gray-500 mb-2">Select Account</div>
         {accounts.map((account: WalletAccount) => (
-          <button
+          <div
             key={account.address}
-            onClick={() => onSelectAccount(account.address)}
             className={`w-full text-left px-2 py-1 rounded text-sm ${
               account.address === selectedAccount?.address
                 ? 'bg-blue-50 text-blue-600'
@@ -47,7 +46,12 @@ const AccountDropdown: React.FC<AccountDropdownProps> = ({
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="font-medium">{account.name || shortenAddress(account.address)}</span>
+              <button
+                onClick={() => onSelectAccount(account.address)}
+                className="flex-1 text-left font-medium hover:opacity-80"
+              >
+                {account.name || shortenAddress(account.address)}
+              </button>
               <button
                 onClick={e => handleCopy(e, account.address)}
                 className="p-1 hover:bg-gray-200 rounded transition-colors"
@@ -60,10 +64,14 @@ const AccountDropdown: React.FC<AccountDropdownProps> = ({
                 )}
               </button>
             </div>
-            <div className="text-xs text-gray-500 mt-1" title={account.address}>
+            <button
+              onClick={() => onSelectAccount(account.address)}
+              className="w-full text-left text-xs text-gray-500 mt-1 hover:opacity-80"
+              title={account.address}
+            >
               {shortenAddress(account.address, 8)}
-            </div>
-          </button>
+            </button>
+          </div>
         ))}
         <div className="border-t mt-2 pt-2">
           <button

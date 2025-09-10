@@ -12,6 +12,7 @@
   "dependencies": {
     "@autonomys/auto-consensus": "1.5.14",
     "@autonomys/auto-utils": "1.5.14",
+    "@noble/hashes": "^2.0.0",
     "@polkadot/api": "^16.2.2",
     "@polkadot/extension-dapp": "^0.60.1",
     "@radix-ui/react-dialog": "^1.1.14",
