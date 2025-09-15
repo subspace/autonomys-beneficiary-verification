@@ -13,7 +13,7 @@ function App() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-xl font-semibold text-gray-900">
-            Autonomys EVM Address Verification
+            Autonomys EVM Beneficiary Address Verification
           </h1>
           <WalletButton onOpenModal={() => setWalletModalOpen(true)} />
         </div>
@@ -22,6 +22,105 @@ function App() {
       {/* Main Content */}
       <main className="max-w-6xl mx-auto px-4 py-8">
         <div className="space-y-6">
+          {/* Welcome Section */}
+          <div className="bg-white rounded-lg shadow-sm p-6">
+            <h2 className="text-lg font-medium text-gray-900 mb-4">
+              Welcome to the Beneficiary Address Association Portal
+            </h2>
+            
+            <div className="prose prose-gray max-w-none">
+              <p className="text-gray-700 mb-4">
+                As part of the Autonomys token distribution process, every stakeholder must designate an EVM beneficiary wallet to receive vested tokens.
+              </p>
+              
+              <p className="text-gray-700 mb-4">
+                To ensure security and fairness, we need to confirm that the EVM address you provide is genuinely linked to your verified Subspace (SS58) account. This is done by submitting a simple on-chain transaction from your SS58 wallet.
+              </p>
+              
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <h3 className="text-lg font-medium text-blue-900 mb-3">Why this is important:</h3>
+                <ul className="space-y-2 text-blue-800">
+                  <li className="flex items-start">
+                    <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                    It proves that you, as the owner of the SS58 address we have on file, have chosen the EVM wallet where your vested tokens will be delivered.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                    It prevents anyone else from registering an address on your behalf.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                    It ensures that all future token releases flow to the correct wallet.
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                <h3 className="text-lg font-medium text-amber-900 mb-3">What you will need to do:</h3>
+                <ol className="space-y-3 text-amber-800">
+                  <li className="flex items-start">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-sm font-medium mr-3 flex-shrink-0 mt-0.5">1</span>
+                    Connect your SS58 wallet below.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-sm font-medium mr-3 flex-shrink-0 mt-0.5">2</span>
+                    Copy/paste your EVM beneficiary wallet address for receiving tokens.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-sm font-medium mr-3 flex-shrink-0 mt-0.5">3</span>
+                    Submit the verification transaction.
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-sm font-medium mr-3 flex-shrink-0 mt-0.5">4</span>
+                    Reply to the Subspace Foundation email with your transaction hash.
+                  </li>
+                </ol>
+                
+                <div className="mt-4 p-3 bg-amber-100 rounded border">
+                  <p className="text-amber-800 font-medium">
+                    That's it - once verified, your SS58 and EVM addresses will be linked, and you'll be ready for vesting.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mt-4">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-red-400 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                  <div className="ml-3">
+                    <h3 className="text-xl font-semibold text-red-900 mb-2">Critical Warning</h3>
+                    <div className="text-red-800">
+                      <p className="font-semibold mb-2">
+                        Double-check your EVM wallet address before submitting!
+                      </p>
+                      <ul className="space-y-1 text-sm">
+                        <li className="flex items-start">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-600 mt-2 mr-2 flex-shrink-0"></span>
+                          <strong>Submitting an incorrect EVM address will result in permanent loss of your vested tokens.</strong>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-600 mt-2 mr-2 flex-shrink-0"></span>
+                          Once submitted and verified, the address association cannot be changed.
+                        </li>
+                        <li className="flex items-start">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-600 mt-2 mr-2 flex-shrink-0"></span>
+                          Ensure you control the private keys for the EVM address you provide.
+                        </li>
+                        <li className="flex items-start">
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-600 mt-2 mr-2 flex-shrink-0"></span>
+                          Verify the address multiple times before clicking submit.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Wallet Status Section */}
           <div className="bg-white rounded-lg shadow-sm p-6">
             <h2 className="text-lg font-medium mb-4">Wallet Status</h2>
