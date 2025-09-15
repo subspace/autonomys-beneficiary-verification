@@ -137,9 +137,9 @@ export const VerificationForm: React.FC = () => {
     <div className="bg-white rounded-lg shadow-sm p-6">
       <h2 className="text-lg font-medium mb-4">EVM Address Verification</h2>
       <p className="text-gray-600 mb-6">
-        Submit your EVM address to the Autonomys Network for verification. This will create a permanent record 
-        linking your Substrate wallet to your EVM address. Transaction confirmation may take a short time 
-        depending on network conditions.
+        Submit your EVM address to the Autonomys Network for verification. This will create a permanent, 
+        structured record linking your Substrate wallet to your EVM address with timestamp and replay protection. 
+        Transaction confirmation may take a short while depending on network conditions.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">

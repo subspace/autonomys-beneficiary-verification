@@ -161,8 +161,15 @@ export class AutonomysApiService {
     });
 
     try {
-      // Create the remark extrinsic with EVM address as content
-      const remarkContent = `EVM_ADDRESS:${evmAddress}`;
+      // Create the remark extrinsic with structured association content
+      const nonce = crypto.randomUUID();
+      const timestamp = new Date().toISOString();
+      const remarkContent = `SUBSPACE_ASSOC:v1
+ss58=${senderAddress}
+evm=${evmAddress}
+scope=beneficiary
+nonce=${nonce}
+ts=${timestamp}`;
       const extrinsic = api.tx.system.remark(remarkContent);
 
       // Update status

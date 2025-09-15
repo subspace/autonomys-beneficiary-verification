@@ -61,15 +61,28 @@ The app will be available at `http://localhost:5173`
 5. **Share with Team**: Send the transaction hash to the project team for validation
 
 ### What Happens On-Chain
-- The application creates a `system.remark` extrinsic with content: `EVM_ADDRESS:0xYourAddress`
+- The application creates a `system.remark` extrinsic with a structured association record
 - This transaction is permanently recorded on the Autonomys blockchain
-- The transaction links your Substrate account to your EVM address
+- The transaction links your Substrate account to your EVM address with full audit trail
 - The transaction hash serves as cryptographic proof of this link
 
 ### Transaction Content Format
 ```
-EVM_ADDRESS:0x742d35Cc6634C0532925a3b8D4e5D7e78c7c8e5B
+SUBSPACE_ASSOC:v1
+ss58=5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
+evm=0x742d35Cc6634C0532925a3b8D4e5D7e78c7c8e5B
+scope=beneficiary
+nonce=550e8400-e29b-41d4-a716-446655440000
+ts=2024-01-15T10:30:00.000Z
 ```
+
+**Schema Details:**
+- `SUBSPACE_ASSOC:v1` - Stable prefix and version for reliable parsing
+- `ss58` - Your Substrate address (automatically filled)
+- `evm` - Your EVM address with EIP-55 checksum validation
+- `scope=beneficiary` - Indicates this is for beneficiary verification
+- `nonce` - UUIDv4 for replay protection
+- `ts` - ISO8601 timestamp for audit trail
 
 ### Explorer Integration
 Successful transactions can be viewed on the Autonomys Network explorer:
