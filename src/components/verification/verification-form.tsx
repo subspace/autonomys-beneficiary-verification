@@ -317,9 +317,9 @@ export const VerificationForm: React.FC = () => {
             <h4 className="text-sm font-medium text-blue-800 mb-1">Next Steps:</h4>
             <ul className="text-sm text-blue-700 space-y-1">
               <li>• Copy the transaction hash above</li>
-              <li>• Send it to the project team for verification</li>
-              <li>• Keep a record of this hash for your records</li>
-              <li>• The submit button is disabled to prevent duplicate submissions</li>
+              <li>• Reply to the Subspace Foundation email with your transaction hash</li>
+              <li>• Keep a note of this hash for your records</li>
+              <li>• The submit button has been disabled to prevent duplicate submissions</li>
             </ul>
           </div>
         </div>
