@@ -14,9 +14,21 @@ function App() {
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-semibold text-gray-900">
-            Autonomys EVM Beneficiary Address Verification
-          </h1>
+          <div className="flex items-center space-x-3">
+            <img 
+              src="/subspace-logo.png" 
+              alt="Subspace Foundation" 
+              className="h-10 w-10 flex-shrink-0"
+            />
+            <div>
+              <h1 className="text-xl font-semibold text-gray-900">
+                Autonomys Beneficiary Address Verification
+              </h1>
+              <p className="text-sm text-gray-600 mt-1">
+                Operated by the Subspace Foundation
+              </p>
+            </div>
+          </div>
           <WalletButton onOpenModal={() => setWalletModalOpen(true)} />
         </div>
       </header>
@@ -27,7 +39,7 @@ function App() {
           {/* Welcome Section */}
           <div className="bg-white rounded-lg shadow-sm p-6">
             <h2 className="text-lg font-medium text-gray-900 mb-4">
-              Welcome to the Beneficiary Address Association Portal
+              Welcome to the Autonomys Network Beneficiary Address Association Portal
             </h2>
             
             <div className="prose prose-gray max-w-none">
