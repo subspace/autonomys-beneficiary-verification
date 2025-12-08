@@ -36,7 +36,7 @@ function App() {
               </p>
               
               <p className="text-gray-700 mb-4">
-                To ensure security, we need to confirm that the EVM address you provide is genuinely linked to your verified Autonomys wallet. This is achieved by submitting a simple on-chain transaction from your Autonomys wallet.
+              To ensure security, we need to confirm that the EVM address you provide is genuinely linked to the Autonomys (SS58) account you are connected with. This is achieved by submitting a simple on-chain transaction from your SS58 wallet.
               </p>
               
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
@@ -66,7 +66,7 @@ function App() {
                       <tbody className="divide-y divide-gray-200">
                         <tr>
                           <td className="px-4 py-3 font-medium text-gray-900">Autonomys Consensus Chain</td>
-                          <td className="px-4 py-3 text-gray-700">Built on Substrate. This is where your verified "Autonomys wallet" exists.</td>
+                          <td className="px-4 py-3 text-gray-700">Built on Substrate. This is where the account you are verifying ownership of exists.</td>
                           <td className="px-4 py-3 text-gray-700 font-mono text-sm">SS58</td>
                         </tr>
                         <tr>
@@ -167,7 +167,7 @@ function App() {
                         </li>
                         <li className="flex items-start">
                           <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
-                          Once submitted, the address association cannot be changed.
+                          Once submitted, changing your beneficiary address (if possible) will require manual review and may delay your ability to claim tokens.
                         </li>
                         <li className="flex items-start">
                           <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>

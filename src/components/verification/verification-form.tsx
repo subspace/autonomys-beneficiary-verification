@@ -177,7 +177,7 @@ export const VerificationForm: React.FC = () => {
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
-                    A Safe multisig wallet where you control appropriate signers
+                    Safe wallets are supported, and you will be able to approve claim transactions using your Safe's configured signing policy
                   </li>
                 </ul>
                 <p className="font-semibold mb-2">
@@ -344,7 +344,7 @@ export const VerificationForm: React.FC = () => {
           <h3 className="font-medium text-green-800 mb-2">✅ Verification Complete!</h3>
           <p className="text-sm text-green-700 mb-4">
             Your EVM address has been successfully recorded on the Autonomys Network. 
-            Please save the transaction hash below and send it to the project team for validation.
+            Please save the transaction hash below and send it to the Subspace Foundation for validation.
           </p>
           
           <div className="bg-white rounded border p-3">
