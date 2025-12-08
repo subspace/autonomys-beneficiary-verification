@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { WalletButton, WalletModal } from './components/wallet';
 import { VerificationForm } from './components/verification';
 import { useWallet } from './hooks/use-wallet';
+import { ChevronDown } from 'lucide-react';
 
 function App() {
   const [walletModalOpen, setWalletModalOpen] = useState(false);
+  const [walletTypesExpanded, setWalletTypesExpanded] = useState(false);
   const { isConnected, selectedAccount } = useWallet();
 
   return (
@@ -38,8 +40,17 @@ function App() {
               </p>
               
               <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
-                <h3 className="text-lg font-medium text-gray-900 mb-3">Understanding Wallet Types:</h3>
-                <div className="text-gray-700 space-y-2">
+                <button
+                  onClick={() => setWalletTypesExpanded(!walletTypesExpanded)}
+                  className="w-full flex items-center justify-between text-left"
+                >
+                  <h3 className="text-lg font-medium text-gray-900">Understanding Wallet Types:</h3>
+                  <ChevronDown 
+                    className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${walletTypesExpanded ? 'transform rotate-180' : ''}`}
+                  />
+                </button>
+                {walletTypesExpanded && (
+                <div className="text-gray-700 space-y-2 mt-3">
                   <p className="mb-3">
                     The Autonomys network has two chains:
                   </p>
@@ -75,6 +86,7 @@ function App() {
                     You'll connect your <strong>Autonomys wallet</strong> (SS58 address) to verify ownership, and designate an <strong>EVM wallet</strong> (0x address) to receive your vested tokens.
                   </p>
                 </div>
+                )}
               </div>
               
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
