@@ -34,15 +34,37 @@ function App() {
               </p>
               
               <p className="text-gray-700 mb-4">
-                To ensure security and fairness, we need to confirm that the EVM address you provide is genuinely linked to your verified Subspace (SS58) account. This is done by submitting a simple on-chain transaction from your SS58 wallet.
+                To ensure security, we need to confirm that the EVM address you provide is genuinely linked to your verified Autonomys wallet. This is achieved by submitting a simple on-chain transaction from your Autonomys wallet.
               </p>
+              
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
+                <h3 className="text-lg font-medium text-gray-900 mb-3">Understanding Wallet Types:</h3>
+                <div className="text-gray-700 space-y-2">
+                  <p className="mb-2">
+                    The Autonomys network has two chains:
+                  </p>
+                  <ul className="space-y-2">
+                    <li className="flex items-start">
+                      <span className="inline-block w-2 h-2 rounded-full bg-gray-600 mt-2 mr-3 flex-shrink-0"></span>
+                      <strong>Autonomys Consensus Chain</strong>: Built on Substrate, uses SS58 addresses. This is where your verified "Autonomys wallet" exists.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-block w-2 h-2 rounded-full bg-gray-600 mt-2 mr-3 flex-shrink-0"></span>
+                      <strong>Auto EVM</strong>: An EVM-compatible chain where vesting takes place, uses standard EVM addresses (0x...).
+                    </li>
+                  </ul>
+                  <p className="mt-3">
+                    You'll connect your <strong>Autonomys wallet</strong> (SS58 address) to verify ownership, and designate an <strong>EVM wallet</strong> (0x address) to receive your vested tokens.
+                  </p>
+                </div>
+              </div>
               
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                 <h3 className="text-lg font-medium text-blue-900 mb-3">Why this is important:</h3>
                 <ul className="space-y-2 text-blue-800">
                   <li className="flex items-start">
                     <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
-                    It proves that you, as the owner of the SS58 address we have on file, have chosen the EVM wallet where your vested tokens will be delivered.
+                    It proves that you, as the owner of the Autonomys wallet we have on file, have chosen the EVM wallet where your vested tokens will be delivered.
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
@@ -60,11 +82,11 @@ function App() {
                 <ol className="space-y-3 text-amber-800">
                   <li className="flex items-start">
                     <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-sm font-medium mr-3 flex-shrink-0 mt-0.5">1</span>
-                    Connect your SS58 wallet below.
+                    Connect your Autonomys wallet below.
                   </li>
                   <li className="flex items-start">
                     <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-sm font-medium mr-3 flex-shrink-0 mt-0.5">2</span>
-                    Copy/paste your EVM beneficiary wallet address for receiving tokens.
+                    Enter your EVM beneficiary wallet address for receiving tokens.
                   </li>
                   <li className="flex items-start">
                     <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-sm font-medium mr-3 flex-shrink-0 mt-0.5">3</span>
@@ -77,9 +99,21 @@ function App() {
                 </ol>
                 
                 <div className="mt-4 p-3 bg-amber-100 rounded border">
-                  <p className="text-amber-800 font-medium">
-                    That's it - once verified, your SS58 and EVM addresses will be linked, and you'll be ready for vesting.
-                  </p>
+                  <h4 className="text-amber-900 font-semibold mb-2">What happens next:</h4>
+                  <ul className="text-amber-800 space-y-2">
+                    <li className="flex items-start">
+                      <span className="inline-block w-2 h-2 rounded-full bg-amber-600 mt-2 mr-3 flex-shrink-0"></span>
+                      Your Autonomys wallet will be permanently linked to the EVM address you provide.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-block w-2 h-2 rounded-full bg-amber-600 mt-2 mr-3 flex-shrink-0"></span>
+                      This address will be used as your beneficiary wallet for all vesting and lockup contracts.
+                    </li>
+                    <li className="flex items-start">
+                      <span className="inline-block w-2 h-2 rounded-full bg-amber-600 mt-2 mr-3 flex-shrink-0"></span>
+                      You are responsible for ensuring that this wallet remains under your control and capable of signing transactions required to claim tokens in the future.
+                    </li>
+                  </ul>
                 </div>
               </div>
               
@@ -96,22 +130,18 @@ function App() {
                       <p className="font-semibold mb-2">
                         Double-check your EVM wallet address before submitting!
                       </p>
-                      <ul className="space-y-1 text-sm">
+                      <ul className="space-y-2">
                         <li className="flex items-start">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-600 mt-2 mr-2 flex-shrink-0"></span>
-                          <strong>Submitting an incorrect EVM address will result in permanent loss of your vested tokens.</strong>
+                          <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
+                          <strong>Submitting an incorrect EVM address could result in permanent loss of your vested tokens.</strong>
                         </li>
                         <li className="flex items-start">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-600 mt-2 mr-2 flex-shrink-0"></span>
-                          Once submitted and verified, the address association cannot be changed.
+                          <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
+                          Once submitted, the address association cannot be changed.
                         </li>
                         <li className="flex items-start">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-600 mt-2 mr-2 flex-shrink-0"></span>
+                          <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
                           Ensure you control the private keys for the EVM address you provide.
-                        </li>
-                        <li className="flex items-start">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-red-600 mt-2 mr-2 flex-shrink-0"></span>
-                          Verify the address multiple times before clicking submit.
                         </li>
                       </ul>
                     </div>
@@ -134,7 +164,7 @@ function App() {
                 </div>
                 <h3 className="text-lg font-medium text-gray-900 mb-2">No Wallet Connected</h3>
                 <p className="text-gray-500 mb-4">
-                  Connect your Substrate wallet to start the EVM address verification process.
+                  Connect your Autonomys wallet to start the EVM address verification process.
                 </p>
                 <button
                   onClick={() => setWalletModalOpen(true)}

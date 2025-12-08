@@ -72,7 +72,7 @@ export const WalletModal: React.FC<WalletModalProps> = ({ open, onOpenChange }) 
         <DialogHeader>
           <DialogTitle>Connect Wallet</DialogTitle>
           <DialogDescription>
-            Choose a wallet extension to connect to your Substrate account.
+            Choose a wallet extension to connect to your Autonomys wallet.
           </DialogDescription>
         </DialogHeader>
 

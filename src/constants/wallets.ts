@@ -4,7 +4,7 @@ export const SUPPORTED_WALLET_EXTENSIONS = [
   'polkadot-js', // Polkadot.js
 ] as const;
 
-export const DAPP_NAME = 'Substrate Wallet Integration Demo';
+export const DAPP_NAME = 'Autonomys Beneficiary Verification';
 
 export const WALLET_STORAGE_KEY = 'substrate-wallet-demo-preferences';
 

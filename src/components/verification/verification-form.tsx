@@ -15,6 +15,7 @@ export const VerificationForm: React.FC = () => {
   const [transactionHash, setTransactionHash] = useState<string | null>(null);
   const [copiedHash, setCopiedHash] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [attestationConfirmed, setAttestationConfirmed] = useState(false);
 
   // Validate EVM address on input change
   useEffect(() => {
@@ -34,6 +35,8 @@ export const VerificationForm: React.FC = () => {
       setTransactionStatus(null);
       setIsCompleted(false); // Reset completion state for new address
     }
+    // Reset attestation when address changes
+    setAttestationConfirmed(false);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -46,6 +49,11 @@ export const VerificationForm: React.FC = () => {
 
     if (!validationResult?.isValid) {
       alert('Please enter a valid EVM address');
+      return;
+    }
+
+    if (!attestationConfirmed) {
+      alert('Please confirm that you control the EVM wallet address');
       return;
     }
 
@@ -126,7 +134,7 @@ export const VerificationForm: React.FC = () => {
         <Alert>
           <AlertCircle className="w-4 h-4" />
           <AlertDescription>
-            Please connect your Substrate wallet to continue with the verification process.
+            Please connect your Autonomys wallet to continue with the verification process.
           </AlertDescription>
         </Alert>
       </div>
@@ -138,11 +146,51 @@ export const VerificationForm: React.FC = () => {
       <h2 className="text-lg font-medium mb-4">EVM Address Verification</h2>
       <p className="text-gray-600 mb-6">
         Submit your EVM address to the Autonomys Network for verification. This will create a permanent, 
-        structured record linking your Substrate wallet to your EVM address with timestamp and replay protection. 
+        structured record linking your Autonomys wallet to your EVM address with timestamp and replay protection. 
         Transaction confirmation may take a short while depending on network conditions.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Wallet Requirement Warning */}
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="flex items-start">
+            <div className="flex-shrink-0">
+              <svg className="h-5 w-5 text-red-400 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <h3 className="text-xl font-semibold text-red-900 mb-2">Important - Wallet Requirements</h3>
+              <div className="text-red-800">
+                <p className="mb-2">
+                  The EVM address you submit must be a wallet that <strong>you personally control and can sign transactions from</strong>.
+                </p>
+                <p className="mb-2 font-semibold">Suitable wallet types:</p>
+                <ul className="space-y-2 mb-3">
+                  <li className="flex items-start">
+                    <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
+                    A standard non-custodial wallet (e.g. MetaMask, Talisman)
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
+                    A hardware wallet (Ledger has been tested), used via a wallet app
+                  </li>
+                  <li className="flex items-start">
+                    <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
+                    A Safe multisig wallet where you control appropriate signers
+                  </li>
+                </ul>
+                <p className="font-semibold mb-2">
+                  Do <strong>not</strong> use exchange deposit addresses (Binance, Coinbase, etc.) or any custodial wallet where you do not control the private keys.
+                </p>
+                <p>
+                  If you provide an address you cannot sign from, you may permanently lose access to any vested tokens.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* EVM Address Input */}
         <div>
           <label htmlFor="evmAddress" className="block text-sm font-medium text-gray-700 mb-2">
@@ -189,10 +237,32 @@ export const VerificationForm: React.FC = () => {
           )}
         </div>
 
+        {/* Attestation Checkbox */}
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+          <label className="flex items-start space-x-3 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={attestationConfirmed}
+              onChange={(e) => setAttestationConfirmed(e.target.checked)}
+              disabled={isSubmitting || isCompleted}
+              className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <div className="flex-1 text-sm text-amber-900">
+              <span className="font-semibold">By submitting this EVM address you confirm that:</span>
+              <ol className="list-decimal list-inside mt-2 space-y-1 ml-2">
+                <li>It is a wallet you control with access to the private keys;</li>
+                <li>You are responsible for managing that wallet safely and for any subsequent claims;</li>
+                <li>You understand that using an address you cannot sign from may result in permanent loss of your vested tokens.</li>
+                <li>If you're unsure whether your wallet is appropriate, please contact us at <a href="mailto:claims@subspace.foundation" className="text-blue-600 hover:text-blue-800 underline">claims@subspace.foundation</a> before submitting.</li>
+              </ol>
+            </div>
+          </label>
+        </div>
+
         {/* Submit Button */}
         <Button
           type="submit"
-          disabled={!validationResult?.isValid || isSubmitting || isCompleted}
+          disabled={!validationResult?.isValid || !attestationConfirmed || isSubmitting || isCompleted}
           className="w-full"
         >
           {isSubmitting ? (
@@ -314,13 +384,42 @@ export const VerificationForm: React.FC = () => {
           </div>
 
           <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
-            <h4 className="text-sm font-medium text-blue-800 mb-1">Next Steps:</h4>
-            <ul className="text-sm text-blue-700 space-y-1">
-              <li>• Copy the transaction hash above</li>
-              <li>• Reply to the Subspace Foundation email with your transaction hash</li>
-              <li>• Keep a note of this hash for your records</li>
-              <li>• The submit button has been disabled to prevent duplicate submissions</li>
+            <h4 className="text-sm font-medium text-blue-800 mb-2">What this means:</h4>
+            <ul className="text-blue-700 space-y-2">
+              <li className="flex items-start">
+                <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                Your Autonomys wallet has been permanently linked to the EVM address you provided.
+              </li>
+              <li className="flex items-start">
+                <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                This address will be used as your beneficiary wallet for all vesting and lockup contracts.
+              </li>
+              <li className="flex items-start">
+                <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                You are responsible for ensuring that this wallet remains under your control and capable of signing transactions required to claim tokens in the future.
+              </li>
             </ul>
+            <div className="mt-3 pt-3 border-t border-blue-200">
+              <h4 className="text-sm font-medium text-blue-800 mb-2">Next steps:</h4>
+              <ul className="text-blue-700 space-y-2">
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                  Copy the transaction hash above
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                  Reply to the Subspace Foundation email with your transaction hash
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                  Keep a note of this hash for your records
+                </li>
+                <li className="flex items-start">
+                  <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
+                  The submit button has been disabled to prevent duplicate submissions
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       )}
