@@ -3,6 +3,7 @@ import { WalletButton, WalletModal } from './components/wallet';
 import { VerificationForm } from './components/verification';
 import { useWallet } from './hooks/use-wallet';
 import { ChevronDown } from 'lucide-react';
+import { address } from '@autonomys/auto-utils';
 
 function App() {
   const [walletModalOpen, setWalletModalOpen] = useState(false);
@@ -233,18 +234,22 @@ function App() {
                   </div>
                 </div>
 
+                {/* Substrate Address - Highlighted */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-medium text-blue-900 mb-2">Your Substrate (SS58) Address</h4>
+                  <p className="text-blue-800 font-mono text-sm break-all">
+                    {selectedAccount?.address}
+                  </p>
+                  <p className="text-xs text-blue-600 mt-2">
+                    This is the address format (starting with "5") that you provided during stakeholder verification.
+                  </p>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-gray-50 rounded-lg p-4">
                     <h4 className="font-medium text-gray-900 mb-2">Account Name</h4>
                     <p className="text-gray-600 font-mono">
                       {selectedAccount?.name || 'Unnamed Account'}
-                    </p>
-                  </div>
-
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h4 className="font-medium text-gray-900 mb-2">Account Address</h4>
-                    <p className="text-gray-600 font-mono text-sm break-all">
-                      {selectedAccount?.address}
                     </p>
                   </div>
 
@@ -259,6 +264,16 @@ function App() {
                     <h4 className="font-medium text-gray-900 mb-2">Network</h4>
                     <p className="text-gray-600">
                       Autonomys Mainnet
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h4 className="font-medium text-gray-900 mb-2">Subspace Format Address</h4>
+                    <p className="text-gray-600 font-mono text-sm break-all">
+                      {selectedAccount?.address ? address(selectedAccount.address, 6094) : ''}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-2">
+                      This is the same account displayed in Subspace format (starting with "su").
                     </p>
                   </div>
                 </div>

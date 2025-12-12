@@ -38,11 +38,11 @@ const connectToWallet = async (extensionName: string) => {
     throw new Error(`No accounts found in ${wallet.title}. Please create an account first.`);
   }
 
-  // Convert all account addresses to correct SS58 format
-  // NOTE: Using Autonomys format (6094) - change this for your chain
+  // Convert all account addresses to default Substrate SS58 format (prefix 42)
+  // This format starts with '5' and is what stakeholders have registered with
   const accounts = rawAccounts.map(account => ({
     ...account,
-    address: address(account.address), // Convert to format 6094 (Autonomys mainnet)
+    address: address(account.address, 42), // Convert to default Substrate format (prefix 42)
   }));
 
   return {
