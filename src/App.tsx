@@ -57,7 +57,9 @@ function App() {
                   onClick={() => setWalletTypesExpanded(!walletTypesExpanded)}
                   className="w-full flex items-center justify-between text-left"
                 >
-                  <h3 className="text-lg font-medium text-gray-900">Understanding Wallet Types:</h3>
+                  <h3 className="text-lg font-medium text-gray-900">
+                    {walletTypesExpanded ? 'Understanding Wallet Types:' : 'Understanding Wallet Types (click to expand)'}
+                  </h3>
                   <ChevronDown 
                     className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${walletTypesExpanded ? 'transform rotate-180' : ''}`}
                   />
