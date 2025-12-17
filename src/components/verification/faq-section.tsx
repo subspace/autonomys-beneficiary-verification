@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useImperativeHandle, forwardRef } from 'react';
 import { ChevronDown } from 'lucide-react';
+
+export interface FaqSectionHandle {
+  expand: () => void;
+  scrollToAndExpand: () => void;
+}
 
 interface FaqItem {
   question: string;
@@ -416,7 +421,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, isOpen, onToggle })
   );
 };
 
-export const FaqSection: React.FC = () => {
+export const FaqSection = forwardRef<FaqSectionHandle>((_, ref) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -424,8 +429,19 @@ export const FaqSection: React.FC = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  useImperativeHandle(ref, () => ({
+    expand: () => setIsExpanded(true),
+    scrollToAndExpand: () => {
+      setIsExpanded(true);
+      // Small delay to allow render before scrolling
+      setTimeout(() => {
+        document.getElementById('faq-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    },
+  }));
+
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6">
+    <div id="faq-section" className="bg-white rounded-lg shadow-sm p-6">
       <button
         type="button"
         onClick={() => setIsExpanded(!isExpanded)}
@@ -461,5 +477,7 @@ export const FaqSection: React.FC = () => {
       )}
     </div>
   );
-};
+});
+
+FaqSection.displayName = 'FaqSection';
 

@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { WalletButton, WalletModal } from './components/wallet';
 import { VerificationForm } from './components/verification';
-import { FaqSection } from './components/verification/faq-section';
+import { FaqSection, type FaqSectionHandle } from './components/verification/faq-section';
 import { useWallet } from './hooks/use-wallet';
 import { address } from '@autonomys/auto-utils';
 
 function App() {
   const [walletModalOpen, setWalletModalOpen] = useState(false);
   const { isConnected, selectedAccount } = useWallet();
+  const faqRef = useRef<FaqSectionHandle>(null);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -49,6 +50,18 @@ function App() {
               
               <p className="text-gray-700 mb-4">
               To ensure security, we need to confirm that the EVM address you provide is genuinely linked to the Autonomys (SS58) account you are connected with. This is achieved by submitting a simple on-chain transaction from your SS58 wallet.
+              </p>
+
+              <p className="text-gray-700 mb-4">
+                <strong>Important:</strong> Before submitting your address, please{' '}
+                <button
+                  type="button"
+                  onClick={() => faqRef.current?.scrollToAndExpand()}
+                  className="text-blue-600 hover:text-blue-800 underline font-medium"
+                >
+review the FAQ below
+                  </button>
+                  {' '}- especially the sections on wallet requirements and unsupported wallets.
               </p>
               
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
@@ -234,7 +247,7 @@ function App() {
           <VerificationForm />
 
           {/* FAQ Section */}
-          <FaqSection />
+          <FaqSection ref={faqRef} />
         </div>
       </main>
 
