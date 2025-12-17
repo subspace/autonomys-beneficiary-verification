@@ -3,12 +3,10 @@ import { WalletButton, WalletModal } from './components/wallet';
 import { VerificationForm } from './components/verification';
 import { FaqSection } from './components/verification/faq-section';
 import { useWallet } from './hooks/use-wallet';
-import { ChevronDown } from 'lucide-react';
 import { address } from '@autonomys/auto-utils';
 
 function App() {
   const [walletModalOpen, setWalletModalOpen] = useState(false);
-  const [walletTypesExpanded, setWalletTypesExpanded] = useState(false);
   const { isConnected, selectedAccount } = useWallet();
 
   return (
@@ -52,58 +50,6 @@ function App() {
               <p className="text-gray-700 mb-4">
               To ensure security, we need to confirm that the EVM address you provide is genuinely linked to the Autonomys (SS58) account you are connected with. This is achieved by submitting a simple on-chain transaction from your SS58 wallet.
               </p>
-              
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
-                <button
-                  onClick={() => setWalletTypesExpanded(!walletTypesExpanded)}
-                  className="w-full flex items-center justify-between text-left"
-                >
-                  <h3 className="text-lg font-medium text-gray-900">
-                    {walletTypesExpanded ? 'Understanding Wallet Types:' : 'Understanding Wallet Types (click to expand)'}
-                  </h3>
-                  <ChevronDown 
-                    className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${walletTypesExpanded ? 'transform rotate-180' : ''}`}
-                  />
-                </button>
-                {walletTypesExpanded && (
-                <div className="text-gray-700 space-y-2 mt-3">
-                  <p className="mb-3">
-                    The Autonomys network has two chains:
-                  </p>
-                  <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-gray-200">
-                      <thead>
-                        <tr>
-                          <th className="px-4 py-3 text-left text-base font-semibold text-gray-900">Chain</th>
-                          <th className="px-4 py-3 text-left text-base font-semibold text-gray-900">Description</th>
-                          <th className="px-4 py-3 text-left text-base font-semibold text-gray-900">Address Format</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-200">
-                        <tr>
-                          <td className="px-4 py-3 font-medium text-gray-900">Autonomys Consensus Chain</td>
-                          <td className="px-4 py-3 text-gray-700">Built on Substrate. This is where the account you are verifying ownership of exists.</td>
-                          <td className="px-4 py-3 text-gray-700 font-mono text-sm">SS58</td>
-                        </tr>
-                        <tr>
-                          <td className="px-4 py-3 font-medium text-gray-900">Auto EVM</td>
-                          <td className="px-4 py-3 text-gray-700">An EVM-compatible chain where vesting takes place.</td>
-                          <td className="px-4 py-3 text-gray-700 font-mono text-sm">0x...</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="mt-3 p-3 bg-gray-100 rounded border border-gray-300">
-                    <p className="text-sm text-gray-700">
-                      <strong>Note:</strong> SS58 addresses can appear differently based on network prefix. The same account may be shown as <code className="text-xs bg-white px-1 py-0.5 rounded">5...</code> (Substrate format) or <code className="text-xs bg-white px-1 py-0.5 rounded">su...</code> (Subspace format), but they represent the same account. Your connected wallet displays above in Subspace format, while you may see addresses in Substrate format elsewhere - both refer to the same account. <a href="https://forum.autonomys.xyz/t/substrate-wallet-guide/4535" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 underline">Learn more</a>.
-                    </p>
-                  </div>
-                  <p className="mt-3">
-                    You'll connect your <strong>Autonomys wallet</strong> (SS58 address) to verify ownership, and designate an <strong>EVM wallet</strong> (0x address) to receive your vested tokens.
-                  </p>
-                </div>
-                )}
-              </div>
               
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                 <h3 className="text-lg font-medium text-blue-900 mb-3">Why this is important:</h3>
