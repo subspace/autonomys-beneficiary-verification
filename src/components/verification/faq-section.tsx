@@ -417,6 +417,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, isOpen, onToggle })
 };
 
 export const FaqSection: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
@@ -425,21 +426,39 @@ export const FaqSection: React.FC = () => {
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
-      <h2 className="text-lg font-medium text-gray-900 mb-4">Frequently Asked Questions</h2>
-      <p className="text-gray-700 mb-6">
-        Please review these questions and answers carefully before submitting your beneficiary address.
-      </p>
+      <button
+        type="button"
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full flex items-center justify-between text-left"
+      >
+        <h2 className="text-lg font-medium text-gray-900">
+          {isExpanded ? 'Frequently Asked Questions' : 'Frequently Asked Questions (click to expand)'}
+        </h2>
+        <ChevronDown 
+          className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${
+            isExpanded ? 'transform rotate-180' : ''
+          }`}
+        />
+      </button>
       
-      <div className="space-y-3">
-        {faqItems.map((item, index) => (
-          <AccordionItem
-            key={index}
-            item={item}
-            isOpen={openIndex === index}
-            onToggle={() => handleToggle(index)}
-          />
-        ))}
-      </div>
+      {isExpanded && (
+        <div className="mt-4">
+          <p className="text-gray-700 mb-6">
+            Please review these questions and answers carefully before submitting your beneficiary address.
+          </p>
+          
+          <div className="space-y-3">
+            {faqItems.map((item, index) => (
+              <AccordionItem
+                key={index}
+                item={item}
+                isOpen={openIndex === index}
+                onToggle={() => handleToggle(index)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
