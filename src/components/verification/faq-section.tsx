@@ -109,6 +109,48 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    question: "How do I use a Safe multisig account as my beneficiary wallet?",
+    answer: (
+      <>
+        <p>
+          If you intend to use a Safe multisig as your beneficiary wallet, you must provide the{' '}
+          Safe contract address, not the signer address from MetaMask or another wallet.
+        </p>
+        
+        <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
+          <li>The Safe address is the contract address shown in the Safe interface</li>
+          <li>The signer address (for example, the address shown in MetaMask) is only used to approve transactions on behalf of the Safe</li>
+        </ul>
+        <p className="mt-2">When submitting your beneficiary address, you should enter the Safe address itself.</p>
+        
+        <p className="mt-3 font-medium">Important: Use the correct Safe deployment</p>
+        <p className="mt-2">If you are using a Safe, it must be deployed on Auto EVM.</p>
+        <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
+          <li>
+            Only Safes created via{' '}
+            <a 
+              href="https://safe.autonomys.xyz/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-blue-600 hover:text-blue-800 underline"
+            >
+              https://safe.autonomys.xyz/
+            </a>{' '}
+            are supported
+          </li>
+          <li>Safes deployed on other networks (for example Ethereum mainnet or other EVM chains) must not be used</li>
+        </ul>
+        
+        <p className="mt-3 font-medium">How claims work with a Safe</p>
+        <p className="mt-2">When claiming vested or unlocked tokens:</p>
+        <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
+          <li>The tokens are sent to the Safe address</li>
+          <li>Claim transactions are approved according to your Safe's configured signing policy (for example, multiple signers, hardware wallets, or threshold approvals)</li>
+        </ul>
+      </>
+    ),
+  },
+  {
     question: "Do I need to use an EVM wallet derived from the same seed as my SS58 wallet?",
     answer: (
       <>
