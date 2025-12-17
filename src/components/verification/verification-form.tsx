@@ -144,8 +144,7 @@ export const VerificationForm: React.FC = () => {
     <div className="bg-white rounded-lg shadow-sm p-6">
       <h2 className="text-lg font-medium mb-4">EVM Beneficiary Address Association</h2>
       <p className="text-gray-600 mb-6">
-        Submit your EVM address to the Autonomys Network for verification. This will create a permanent, 
-        structured record linking your Autonomys wallet to your EVM address with timestamp and replay protection. 
+        Submit your EVM address to create the on-chain association linking your Autonomys wallet to your EVM beneficiary address. 
         Transaction confirmation may take a short while depending on network conditions.
       </p>
 

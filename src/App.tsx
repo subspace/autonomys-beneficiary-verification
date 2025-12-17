@@ -49,7 +49,7 @@ function App() {
               </p>
               
               <p className="text-gray-700 mb-4">
-              To ensure security, we need to confirm that the EVM address you provide is genuinely linked to the Autonomys (SS58) account you are connected with. This is achieved by submitting a simple on-chain transaction from your SS58 wallet.
+                To establish this association, you will submit a simple on-chain transaction from your Autonomys (SS58) wallet confirming the EVM address you wish to use.
               </p>
 
               <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
@@ -80,15 +80,11 @@ function App() {
                 <ul className="space-y-2 text-blue-800">
                   <li className="flex items-start">
                     <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
-                    It proves that you, as the owner of the Autonomys wallet we have on file, have chosen the EVM wallet where your vested tokens will be delivered.
+                    It confirms that you, as the owner of the Autonomys wallet on file, have designated the EVM wallet where your tokens will be delivered.
                   </li>
                   <li className="flex items-start">
                     <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
                     It prevents anyone else from registering an address on your behalf.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="inline-block w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
-                    It ensures that all future token releases flow to the correct wallet.
                   </li>
                 </ul>
               </div>
@@ -106,7 +102,7 @@ function App() {
                   </li>
                   <li className="flex items-start">
                     <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-sm font-medium mr-3 flex-shrink-0 mt-0.5">3</span>
-                    Submit the verification transaction.
+                    Submit the association transaction.
                   </li>
                   <li className="flex items-start">
                     <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-600 text-white text-sm font-medium mr-3 flex-shrink-0 mt-0.5">4</span>
