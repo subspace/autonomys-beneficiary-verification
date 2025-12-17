@@ -137,17 +137,7 @@ export const VerificationForm: React.FC = () => {
   };
 
   if (!isConnected) {
-    return (
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <h2 className="text-lg font-medium mb-4">EVM Address Verification</h2>
-        <Alert>
-          <AlertCircle className="w-4 h-4" />
-          <AlertDescription>
-            Please connect your Autonomys wallet to continue with the verification process.
-          </AlertDescription>
-        </Alert>
-      </div>
-    );
+    return null;
   }
 
   return (
