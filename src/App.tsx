@@ -23,7 +23,7 @@ function App() {
             />
             <div>
               <h1 className="text-xl font-semibold text-gray-900">
-                Autonomys Beneficiary Address Verification
+                Autonomys Beneficiary Address Association
               </h1>
               <p className="text-sm text-gray-600 mt-1">
                 Operated by the Subspace Foundation
@@ -201,7 +201,7 @@ function App() {
                     <div className="ml-3">
                       <h3 className="text-sm font-medium text-green-800">Wallet Connected</h3>
                       <div className="mt-2 text-sm text-green-700">
-                        <p>Ready to submit EVM address verification to Autonomys Network</p>
+                        <p>Ready to submit EVM beneficiary address association to Autonomys Network</p>
                       </div>
                     </div>
                   </div>

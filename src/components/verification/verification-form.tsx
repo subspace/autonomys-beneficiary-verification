@@ -142,7 +142,7 @@ export const VerificationForm: React.FC = () => {
 
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
-      <h2 className="text-lg font-medium mb-4">EVM Address Verification</h2>
+      <h2 className="text-lg font-medium mb-4">EVM Beneficiary Address Association</h2>
       <p className="text-gray-600 mb-6">
         Submit your EVM address to the Autonomys Network for verification. This will create a permanent, 
         structured record linking your Autonomys wallet to your EVM address with timestamp and replay protection. 
@@ -283,7 +283,7 @@ export const VerificationForm: React.FC = () => {
               <span>Verification Complete</span>
             </div>
           ) : (
-            'Submit Verification Transaction'
+            'Submit Association Transaction'
           )}
         </Button>
       </form>

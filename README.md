@@ -1,11 +1,11 @@
-# Autonomys EVM Address Verification
+# Autonomys EVM Beneficiary Address Association
 
 A React application that allows users to verify their EVM addresses by submitting them to the Autonomys Network through a `system.remark` transaction. This creates a permanent on-chain record linking a Substrate wallet to an EVM address for verification purposes.
 
 ## Features
 
 ### Core Functionality
-✅ **EVM Address Verification** - Submit EVM addresses to Autonomys Network via `system.remark` transactions  
+✅ **EVM Beneficiary Address Association** - Submit EVM addresses to Autonomys Network via `system.remark` transactions  
 ✅ **Address Validation** - Full EIP-55 checksum validation for EVM addresses  
 ✅ **Transaction Tracking** - Real-time status updates and transaction hash display  
 ✅ **Network Integration** - Direct connection to Autonomys Network mainnet  
