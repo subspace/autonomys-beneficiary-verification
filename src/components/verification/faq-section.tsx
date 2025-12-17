@@ -423,10 +423,26 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, isOpen, onToggle })
 
 export const FaqSection = forwardRef<FaqSectionHandle>((_, ref) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
 
   const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+    setOpenIndices(prev => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
+
+  const handleExpandAll = () => {
+    setOpenIndices(new Set(faqItems.map((_, i) => i)));
+  };
+
+  const handleCollapseAll = () => {
+    setOpenIndices(new Set());
   };
 
   useImperativeHandle(ref, () => ({
@@ -459,16 +475,35 @@ export const FaqSection = forwardRef<FaqSectionHandle>((_, ref) => {
       
       {isExpanded && (
         <div className="mt-4">
-          <p className="text-gray-700 mb-6">
-            Please review these questions and answers carefully before submitting your beneficiary address.
-          </p>
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-gray-700">
+              Please review these questions and answers carefully before submitting your beneficiary address.
+            </p>
+            <div className="flex gap-2 ml-4 flex-shrink-0">
+              <button
+                type="button"
+                onClick={handleExpandAll}
+                className="text-sm text-blue-600 hover:text-blue-800 underline"
+              >
+                Expand all
+              </button>
+              <span className="text-gray-400">|</span>
+              <button
+                type="button"
+                onClick={handleCollapseAll}
+                className="text-sm text-blue-600 hover:text-blue-800 underline"
+              >
+                Collapse all
+              </button>
+            </div>
+          </div>
           
           <div className="space-y-3">
             {faqItems.map((item, index) => (
               <AccordionItem
                 key={index}
                 item={item}
-                isOpen={openIndex === index}
+                isOpen={openIndices.has(index)}
                 onToggle={() => handleToggle(index)}
               />
             ))}
