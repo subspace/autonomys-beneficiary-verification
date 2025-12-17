@@ -9,6 +9,7 @@ A React application that allows users to verify their EVM addresses by submittin
 ✅ **Address Validation** - Full EIP-55 checksum validation for EVM addresses  
 ✅ **Transaction Tracking** - Real-time status updates and transaction hash display  
 ✅ **Network Integration** - Direct connection to Autonomys Network mainnet  
+✅ **Wallet Suitability Self-Check** - Optional gasless message signing to verify wallet access (see below)  
 
 ### Wallet Integration
 ✅ **Multi-wallet support** - Talisman, SubWallet, and Polkadot.js extensions  
@@ -32,6 +33,10 @@ A React application that allows users to verify their EVM addresses by submittin
   - [Talisman](https://chrome.google.com/webstore/detail/talisman-polkadot-wallet/fijngjgcjhjmmpcmkeiomlglpeiijkld)
   - [SubWallet](https://chrome.google.com/webstore/detail/subwallet-polkadot-extens/onhogfjeacnfoofkfgppdlbmlmnplgbn)
   - [Polkadot.js](https://chrome.google.com/webstore/detail/polkadot%7Bjs%7D-extension/mopnmbcafieddcagagdcbnhejhlodfdd)
+- For the optional wallet self-check: an EVM wallet extension:
+  - [MetaMask](https://metamask.io/)
+  - [Rabby](https://rabby.io/)
+  - [Frame](https://frame.sh/) (for hardware wallet support)
 
 ### Installation
 
@@ -71,6 +76,7 @@ The app will be available at `http://localhost:5173`
 SUBSPACE_ASSOC:v1
 ss58=5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY
 evm=0x742d35Cc6634C0532925a3b8D4e5D7e78c7c8e5B
+evm_self_check=matched
 scope=beneficiary
 nonce=550e8400-e29b-41d4-a716-446655440000
 ts=2024-01-15T10:30:00.000Z
@@ -80,6 +86,10 @@ ts=2024-01-15T10:30:00.000Z
 - `SUBSPACE_ASSOC:v1` - Stable prefix and version for reliable parsing
 - `ss58` - Your Substrate address (automatically filled)
 - `evm` - Your EVM address with EIP-55 checksum validation
+- `evm_self_check` - Result of the optional wallet self-check:
+  - `not_performed` - User did not run the self-check
+  - `matched` - Self-check passed (signer matches beneficiary for EOA, or owner signed for Safe)
+  - `not_matched` - Self-check failed (signer does not match entered beneficiary address)
 - `scope=beneficiary` - Indicates this is for beneficiary verification
 - `nonce` - UUIDv4 for replay protection
 - `ts` - ISO8601 timestamp for audit trail
@@ -90,12 +100,98 @@ Successful transactions can be viewed on the Autonomys Network explorer:
 https://autonomys.subscan.io/extrinsic/[transaction-hash]
 ```
 
+## Wallet Suitability Self-Check (Optional)
+
+Before submitting the verification transaction, users can perform an **optional gasless self-check** to confirm they control the EVM wallet they're entering. This feature uses EIP-191 `personal_sign` message signing.
+
+### Purpose
+
+- **User Confidence**: Helps users verify they have signing access to their wallet before committing to the on-chain verification
+- **No Cost**: Uses gasless message signing (no transaction fees)
+- **Privacy**: The signature is never submitted anywhere—it's purely for local verification
+- **Safe Multisig Support**: Works with Safe wallets by allowing owner EOAs to sign
+
+### Important Limitations
+
+> ⚠️ **This check does not guarantee connectivity to Auto EVM or any specific network.**
+
+The self-check uses off-chain message signing (EIP-191 `personal_sign`), which:
+- Works regardless of which network your wallet is connected to
+- Only confirms you can sign messages with your private key
+- Does not verify your wallet can interact with Auto EVM
+- Does not verify your wallet has funds or can submit transactions on any chain
+
+To interact with Auto EVM, you will need to add the Auto EVM network to your wallet and ensure you have the necessary funds for gas when claiming tokens in the future.
+
+### How It Works
+
+1. **Select Wallet Type**: Choose between "EOA (single wallet)" or "Safe multisig"
+2. **Click Sign Button**: The app connects to your EVM wallet (MetaMask, Rabby, etc.)
+3. **Sign Message**: Your wallet prompts you to sign a human-readable message
+4. **View Results**: The app recovers the signer address from the signature
+
+### Message Format
+
+```
+Subspace Foundation — Wallet Suitability Self-Check (no gas)
+
+I control the wallet that is currently connected to this browser.
+
+Beneficiary address entered: 0x742d35Cc6634C0532925a3b8D4e5D7e78c7c8e5B
+Wallet type selected: EOA
+Date: 2024-01-15T10:30:00.000Z
+Site: beneficiary.subspace.foundation
+
+This signature is optional and is not submitted to the Subspace Foundation.
+```
+
+### EOA vs Safe Multisig Mode
+
+| Mode | Behavior |
+|------|----------|
+| **EOA** | Signs message and checks if recovered address matches the entered beneficiary address |
+| **Safe multisig** | Signs message using an owner EOA; no address match check (Safe addresses cannot sign directly) |
+
+### Safe Multisig Considerations
+
+Safe (formerly Gnosis Safe) addresses are smart contracts and cannot sign messages directly. When using Safe mode:
+
+- An owner EOA wallet signs the message
+- The recovered address will be the owner's address, not the Safe address
+- This confirms you can sign as an owner, which is required for Safe transaction approval
+- The address match check is intentionally skipped to avoid confusion
+
+### Technical Implementation
+
+The self-check uses the `ethers` library:
+
+```typescript
+import { BrowserProvider, verifyMessage, getAddress } from 'ethers';
+
+const provider = new BrowserProvider(window.ethereum);
+await provider.send('eth_requestAccounts', []);
+const signer = await provider.getSigner();
+const signature = await signer.signMessage(message);
+const recovered = verifyMessage(message, signature);
+```
+
+### Copy Details
+
+After signing, users can copy the full details to clipboard including:
+- The signed message
+- The signature
+- The recovered signer address
+- Match status (for EOA mode)
+
 ## Project Structure
 
 ```
 src/
 ├── components/
 │   ├── ui/                  # Base UI components (Button, Dialog, Alert)
+│   ├── verification/        # Verification-specific components
+│   │   ├── verification-form.tsx  # Main EVM address verification form
+│   │   └── wallet-self-check.tsx  # Optional gasless wallet self-check
 │   └── wallet/              # Wallet-specific components
 │       ├── wallet-button.tsx    # Connect button with account dropdown
 │       ├── wallet-modal.tsx     # Connection modal
@@ -110,7 +206,9 @@ src/
 ├── constants/
 │   └── wallets.ts           # Wallet configuration
 ├── lib/
-│   └── utils.ts             # Utility functions
+│   ├── evm-signing.ts       # EVM message signing utilities (ethers)
+│   ├── evm-validation.ts    # EVM address validation (EIP-55 checksum)
+│   └── utils.ts             # General utility functions
 ├── App.tsx                  # Main application component
 ├── main.tsx                 # Application entry point
 └── index.css                # Global styles
@@ -265,6 +363,7 @@ rm -rf dist node_modules && yarn install
 ### Core Dependencies
 - `@talismn/connect-wallets` - Wallet connection library
 - `@autonomys/auto-utils` - Autonomys network utilities
+- `ethers` - EVM wallet interaction and message signing
 - `zustand` - State management
 - `react` & `react-dom` - React framework
 

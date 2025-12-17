@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '../ui/button';
 import { Alert, AlertDescription } from '../ui/alert';
 import { useWallet } from '../../hooks/use-wallet';
 import { validateEvmAddress } from '../../lib/evm-validation';
+import { type SelfCheckSummary } from '../../lib/evm-signing';
 import { getAutonomysApi, type TransactionStatus } from '../../services/autonomys-api';
 import { Copy, Check, ExternalLink, AlertCircle, CheckCircle } from 'lucide-react';
+import { WalletSelfCheck } from './wallet-self-check';
 
 export const VerificationForm: React.FC = () => {
   const { isConnected, selectedAccount, injector } = useWallet();
@@ -16,6 +18,12 @@ export const VerificationForm: React.FC = () => {
   const [copiedHash, setCopiedHash] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
   const [attestationConfirmed, setAttestationConfirmed] = useState(false);
+  const [selfCheckResult, setSelfCheckResult] = useState<SelfCheckSummary | null>(null);
+
+  // Callback for when self-check status changes
+  const handleSelfCheckChange = useCallback((summary: SelfCheckSummary | null) => {
+    setSelfCheckResult(summary);
+  }, []);
 
   // Validate EVM address on input change
   useEffect(() => {
@@ -81,7 +89,8 @@ export const VerificationForm: React.FC = () => {
           if (status.status === 'success') {
             setIsCompleted(true);
           }
-        }
+        },
+        selfCheckResult
       );
 
       setTransactionHash(result.hash);
@@ -236,6 +245,12 @@ export const VerificationForm: React.FC = () => {
             </div>
           )}
         </div>
+
+        {/* Optional Wallet Self-Check */}
+        <WalletSelfCheck 
+          beneficiaryAddress={evmAddress} 
+          onSelfCheckChange={handleSelfCheckChange}
+        />
 
         {/* Attestation Checkbox */}
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">

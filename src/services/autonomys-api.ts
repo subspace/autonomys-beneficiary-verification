@@ -7,6 +7,7 @@
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import type { InjectedExtension } from '@polkadot/extension-inject/types';
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
+import type { SelfCheckSummary } from '../lib/evm-signing';
 
 // Autonomys Network endpoints
 export const AUTONOMYS_ENDPOINTS = {
@@ -150,7 +151,8 @@ export class AutonomysApiService {
     evmAddress: string,
     senderAddress: string,
     injector: InjectedExtension,
-    onStatusUpdate?: (status: TransactionStatus) => void
+    onStatusUpdate?: (status: TransactionStatus) => void,
+    selfCheckSummary?: SelfCheckSummary | null
   ): Promise<RemarkTransactionResult> {
     const api = await this.connect();
 
@@ -164,9 +166,23 @@ export class AutonomysApiService {
       // Create the remark extrinsic with structured association content
       const nonce = crypto.randomUUID();
       const timestamp = new Date().toISOString();
+      
+      // Build self-check status for the remark content
+      let evmSelfCheck = 'not_performed';
+      if (selfCheckSummary?.performed) {
+        // For EOA: use match result; for Safe: always "matched" (owner signed successfully)
+        if (selfCheckSummary.walletType === 'EOA') {
+          evmSelfCheck = selfCheckSummary.matchesBeneficiary ? 'matched' : 'not_matched';
+        } else {
+          // Safe multisig: owner signed, which is the expected behavior
+          evmSelfCheck = 'matched';
+        }
+      }
+      
       const remarkContent = `SUBSPACE_ASSOC:v1
 ss58=${senderAddress}
 evm=${evmAddress}
+evm_self_check=${evmSelfCheck}
 scope=beneficiary
 nonce=${nonce}
 ts=${timestamp}`;
