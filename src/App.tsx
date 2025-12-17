@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { WalletButton, WalletModal } from './components/wallet';
 import { VerificationForm } from './components/verification';
+import { FaqSection } from './components/verification/faq-section';
 import { useWallet } from './hooks/use-wallet';
 import { ChevronDown } from 'lucide-react';
 import { address } from '@autonomys/auto-utils';
@@ -285,6 +286,9 @@ function App() {
 
           {/* Verification Form */}
           <VerificationForm />
+
+          {/* FAQ Section */}
+          <FaqSection />
         </div>
       </main>
 
