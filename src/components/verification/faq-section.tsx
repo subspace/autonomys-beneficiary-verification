@@ -345,7 +345,16 @@ const faqItems: FaqItem[] = [
       <>
         <p>You may want to move AI3 to the consensus chain if you plan to:</p>
         <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
-          <li>Stake AI3</li>
+          <li>Stake AI3 to earn rewards in{' '}
+              <a 
+                href="https://forum.autonomys.xyz/t/boosting-early-staking-the-guardians-of-growth-initiative/4962" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                Guardians of Growth
+              </a>
+            </li>
           <li>Participate in consensus-layer activities</li>
           <li>Interact with exchanges or services that support the consensus chain but not Auto EVM</li>
         </ul>
@@ -359,15 +368,15 @@ const faqItems: FaqItem[] = [
       <>
         <p>WAI3 can be unwrapped into native Auto EVM AI3 using the official unwrapping process.</p>
         <p className="mt-2">
-          A step-by-step guide is available here:{' '}
+          A step-by-step guide is available in the {' '}
           <a 
             href="https://develop.autonomys.xyz/evm/wrapping_ai3#unwrapping-wai3" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-blue-600 hover:text-blue-800 underline"
           >
-            https://develop.autonomys.xyz/evm/wrapping_ai3#unwrapping-wai3
-          </a>
+            Autonomys Developer Hub
+          </a>.
         </p>
         <p className="mt-2">Unwrapping requires signing an EVM transaction and paying standard network gas fees.</p>
       </>
