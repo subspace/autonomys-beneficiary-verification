@@ -1,3 +1,5 @@
+import { ClaimFaqSection } from '../components/claim';
+
 const IMAGE_BASE_PATH = '/images/claim-guide';
 
 export function ClaimGuidePage() {
@@ -200,15 +202,8 @@ export function ClaimGuidePage() {
         </div>
       </div>
 
-      {/* FAQ Placeholder */}
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <h3 className="text-lg font-medium text-gray-900 mb-4">
-          Frequently Asked Questions
-        </h3>
-        <p className="text-gray-500">
-          FAQ section coming soon.
-        </p>
-      </div>
+      {/* FAQ Section */}
+      <ClaimFaqSection />
     </div>
   );
 }

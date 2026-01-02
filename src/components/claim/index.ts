@@ -1,0 +1,1 @@
+export { ClaimFaqSection } from './ClaimFaqSection';
