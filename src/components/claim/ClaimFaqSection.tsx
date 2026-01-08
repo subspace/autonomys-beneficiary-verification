@@ -311,12 +311,6 @@ const faqItems: FaqItem[] = [
           </a>
           {' '}for detailed instructions.
         </p>
-        <p className="mt-3 font-medium">Important:</p>
-        <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
-          <li>The Safe must be deployed on Auto EVM</li>
-          <li>Only Safes created via safe.autonomys.xyz are supported</li>
-          <li>Claim transactions are approved according to your Safe's configured signing policy</li>
-        </ul>
       </>
     ),
   },
