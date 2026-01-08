@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { VerificationForm } from '../components/verification';
 import { FaqSection, type FaqSectionHandle } from '../components/verification/faq-section';
 import { useWallet } from '../hooks/use-wallet';
@@ -7,6 +7,10 @@ import { address } from '@autonomys/auto-utils';
 export function HomePage() {
   const { isConnected, selectedAccount } = useWallet();
   const faqRef = useRef<FaqSectionHandle>(null);
+
+  useEffect(() => {
+    document.title = 'EVM Beneficiary Address Association | Autonomys Beneficiary Portal';
+  }, []);
 
   return (
     <div className="space-y-6">
