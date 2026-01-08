@@ -140,6 +140,42 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'bridge-ethereum',
+    question: "How do I bridge AI3 to Ethereum?",
+    answer: (
+      <>
+        <p>After claiming WAI3 on Auto EVM, you can move AI3 to Ethereum if you want to trade on Ethereum-based exchanges.</p>
+        <p className="mt-3 font-medium">The high-level steps are:</p>
+        <ol className="list-decimal list-inside mt-2 space-y-2 ml-2">
+          <li>Unwrap WAI3 to native AI3 on Auto EVM</li>
+          <li>
+            Bridge AI3 from Auto EVM to Ethereum using the{' '}
+            <a 
+              href="https://docs.autonomys.xyz/bridge" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-blue-600 hover:text-blue-800 underline"
+            >
+              official Autonomys bridge
+            </a>
+          </li>
+        </ol>
+        <p className="mt-3">
+          Once bridged to Ethereum, AI3 can be traded on supported Ethereum-based DEXs. For example, AI3 is available on{' '}
+          <a 
+            href="https://app.uniswap.org/explore/pools/ethereum/0xa65e8c1c28fc60612cb8e2df615cc8612bc6d8a04f96128fbd346df44601b6f6" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-blue-600 hover:text-blue-800 underline"
+          >
+            Uniswap via the AI3/USDC pool
+          </a>.
+        </p>
+        <p className="mt-2">Bridging and trading are optional and fully controlled by you.</p>
+      </>
+    ),
+  },
+  {
     id: 'gas-issues',
     question: "My claim transaction isn't working. What should I do?",
     answer: (
