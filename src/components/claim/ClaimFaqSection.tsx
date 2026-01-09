@@ -1,34 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Link2, Check, Copy } from 'lucide-react';
-
-const CopyableUrl: React.FC<{ url: string }> = ({ url }) => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(url).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
-
-  return (
-    <span className="inline-flex items-center gap-1.5 bg-gray-100 px-2 py-1 rounded font-mono text-sm">
-      <span className="text-gray-700">{url}</span>
-      <button
-        type="button"
-        onClick={handleCopy}
-        className="p-0.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
-        title="Copy URL"
-      >
-        {copied ? (
-          <Check className="w-3.5 h-3.5 text-green-600" />
-        ) : (
-          <Copy className="w-3.5 h-3.5" />
-        )}
-      </button>
-    </span>
-  );
-};
+import { ChevronDown, Link2, Check } from 'lucide-react';
 
 interface FaqItem {
   id: string;
@@ -269,7 +240,7 @@ const faqItems: FaqItem[] = [
     answer: (
       <>
         <p>
-          If you registered a Safe multisig as your beneficiary wallet, you can claim tokens by adding Hedgey as a custom Safe app.
+          If you registered a Safe multisig as your beneficiary wallet, you can claim tokens using the Hedgey Token Vesting app.
         </p>
         <p className="mt-3 font-medium">Steps:</p>
         <ol className="list-decimal list-inside mt-2 space-y-2 ml-2">
@@ -285,32 +256,17 @@ const faqItems: FaqItem[] = [
             </a>
           </li>
           <li>
-            Add Hedgey Vesting as a custom Safe app using this URL:
-            <div className="mt-1.5 ml-1">
-              <CopyableUrl url="https://app.hedgey.finance/vesting" />
-            </div>
+            Open the Apps section and find <strong>Hedgey Token Vesting</strong> in the ecosystem apps
             <div className="mt-3 ml-1">
               <img
-                src="/images/claim-guide/hedgey-safe-custom-app-setup.png"
-                alt="Adding Hedgey as a custom Safe app"
+                src="/images/claim-guide/hedgey-safe-ecosystem-app.png"
+                alt="Hedgey Token Vesting in Safe ecosystem apps"
                 className="rounded-lg border border-gray-200 shadow-sm max-w-full"
               />
             </div>
           </li>
           <li>Follow the standard claim process from within your Safe</li>
         </ol>
-        <p className="mt-3">
-          See the{' '}
-          <a 
-            href="https://hedgey.gitbook.io/hedgey-community-docs/support-docs/adding-hedgey-apps-as-custom-safe-apps" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-blue-600 hover:text-blue-800 underline"
-          >
-            Hedgey guide on adding custom Safe apps
-          </a>
-          {' '}for detailed instructions.
-        </p>
       </>
     ),
   },
