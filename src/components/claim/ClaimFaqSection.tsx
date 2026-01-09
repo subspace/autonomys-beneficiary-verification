@@ -197,7 +197,7 @@ const faqItems: FaqItem[] = [
             rel="noopener noreferrer" 
             className="text-blue-600 hover:text-blue-800 underline"
           >
-            Uniswap via the AI3/USDC pool
+            Uniswap via the WAI3/USDC pool
           </a>.
         </p>
         <p className="mt-2">Bridging and trading are optional and fully controlled by you.</p>
