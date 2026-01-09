@@ -240,7 +240,7 @@ const faqItems: FaqItem[] = [
     answer: (
       <>
         <p>
-          If you registered a Safe multisig as your beneficiary wallet, you can claim tokens using the Hedgey Token Vesting app.
+          If you registered a Safe multisig as your beneficiary wallet, you can claim tokens using the Hedgey Vesting Tokens app.
         </p>
         <p className="mt-3 font-medium">Steps:</p>
         <ol className="list-decimal list-inside mt-2 space-y-2 ml-2">
@@ -256,11 +256,11 @@ const faqItems: FaqItem[] = [
             </a>
           </li>
           <li>
-            Open the Apps section and find <strong>Hedgey Token Vesting</strong> in the ecosystem apps
+            Open the Apps section and find <strong>Hedgey Vesting Tokens</strong> in the ecosystem apps
             <div className="mt-3 ml-1">
               <img
                 src="/images/claim-guide/hedgey-safe-ecosystem-app.png"
-                alt="Hedgey Token Vesting in Safe ecosystem apps"
+                alt="Hedgey Vesting Tokens in Safe ecosystem apps"
                 className="rounded-lg border border-gray-200 shadow-sm max-w-full"
               />
             </div>
