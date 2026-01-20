@@ -117,6 +117,28 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'view-wai3-balance',
+    question: "How do I view my WAI3 balance?",
+    answer: (
+      <>
+        <p>
+          To view wrapped AI3 (WAI3) in an EVM wallet such as MetaMask, you will need to add the WAI3 contract address to your wallet.
+        </p>
+        <p className="mt-2">
+          A step-by-step guide on how to do this can be found in the{' '}
+          <a 
+            href="https://develop.autonomys.xyz/evm/wrapping_ai3#wrapping-ai3-for-wai3" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-blue-600 hover:text-blue-800 underline"
+          >
+            WAI3 wrapping guide
+          </a>.
+        </p>
+      </>
+    ),
+  },
+  {
     id: 'xdm',
     question: "How do I move AI3 from Auto EVM to the consensus chain?",
     answer: (
