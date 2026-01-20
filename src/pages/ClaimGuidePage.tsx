@@ -1,8 +1,12 @@
+import { useEffect } from 'react';
 import { ClaimFaqSection } from '../components/claim';
 
 const IMAGE_BASE_PATH = '/images/claim-guide';
 
 export function ClaimGuidePage() {
+  useEffect(() => {
+    document.title = 'How to Claim AI3 Tokens | Autonomys Beneficiary Portal';
+  }, []);
   const steps = [
     {
       number: 1,
