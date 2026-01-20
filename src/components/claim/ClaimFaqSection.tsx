@@ -117,7 +117,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
-    id: 'bridge',
+    id: 'xdm',
     question: "How do I move AI3 from Auto EVM to the consensus chain?",
     answer: (
       <>
@@ -135,6 +135,17 @@ const faqItems: FaqItem[] = [
         <p className="mt-2">
           This process transfers the token representation from Auto EVM back to the consensus chain while 
           preserving the underlying asset.
+        </p>
+        <p className="mt-2">
+          <strong>Note:</strong> You will need to connect your EVM account using{' '}
+          <a 
+            href="https://docs.autonomys.xyz/wallets" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-blue-600 hover:text-blue-800 underline"
+          >
+            SubWallet or Talisman
+          </a>.
         </p>
       </>
     ),
