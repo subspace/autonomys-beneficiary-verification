@@ -159,6 +159,18 @@ const faqItems: FaqItem[] = [
           preserving the underlying asset.
         </p>
         <p className="mt-2">
+          Transfers from Auto EVM to the consensus chain take 14,400 domain blocks (approximately 1 day) to confirm.
+          You can track your transfer status using the{' '}
+          <a 
+            href="https://autonomys-community.github.io/autonomys-helpers/xdm/transfers/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-blue-600 hover:text-blue-800 underline"
+          >
+            XDM Transfer Status tool
+          </a>.
+        </p>
+        <p className="mt-2">
           <strong>Note:</strong> You will need to connect your EVM account using{' '}
           <a 
             href="https://docs.autonomys.xyz/wallets" 
