@@ -43,8 +43,9 @@ jobs:
         with:
           path: ./dist
 
-  # Deployment job
+  # Deployment job (only on push to main, not on PRs)
   deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

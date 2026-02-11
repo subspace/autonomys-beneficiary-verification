@@ -12,20 +12,42 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@autonomys/auto-consensus@1.5.14":
-  version "1.5.14"
-  resolved "https://registry.yarnpkg.com/@autonomys/auto-consensus/-/auto-consensus-1.5.14.tgz#44b408c7d8048895883cbd0e8898284c6d12d5b8"
-  integrity sha512-tvq7rS8arpjY52tq0XD91XQsh5m06fmnJ0qxw5im3zDFCo4D6eWBQuJMaXnmmWl3B74vwyv3rwudJw59djTTpg==
+"@autonomys/auto-consensus@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@autonomys/auto-consensus/-/auto-consensus-1.6.9.tgz#ec988c7cc3a092dac9461ebc82c26ae83c754d0b"
+  integrity sha512-juwI06/V7ku1B1koA3egPYvNS/I8NSUE6acOBnGkOHWCcJ/lu8faslQX/dlkp6UIm68t2Yy3nLlFblg63Ra5sw==
   dependencies:
-    "@autonomys/auto-utils" "^1.5.14"
+    "@autonomys/auto-utils" "^1.6.9"
+    zod "^3.24.2"
 
-"@autonomys/auto-utils@1.5.14", "@autonomys/auto-utils@^1.5.14":
-  version "1.5.14"
-  resolved "https://registry.yarnpkg.com/@autonomys/auto-utils/-/auto-utils-1.5.14.tgz#95fdda32e018a630f47c9e850a397e7cea6e703e"
-  integrity sha512-3Q2wIMdPN4tUcIR4JXS7UCZtwKM6ruSrcICbDuNTP94aozsrtRzgO5aiZWB3kvXUnziaBtv+WpDXd0rtrpoY1g==
+"@autonomys/auto-utils@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@autonomys/auto-utils/-/auto-utils-1.6.9.tgz#06c8efb12c1cc3010c48174e7a47f18ee25ac864"
+  integrity sha512-NuLwNnMSckYv3OdkbGg02zfmHKZUWH0GL8mBf+HKCNJ3HHGHCThY0SjiHDlXCyjlW5YZ53DACvToPDZSN27mDg==
   dependencies:
     "@polkadot/api" "^15.8.1"
     "@polkadot/extension-dapp" "^0.58.6"
+
+"@autonomys/auto-wallet-react@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@autonomys/auto-wallet-react/-/auto-wallet-react-1.6.9.tgz#c09c6e7bd0b0777f8d2242b527968ab4f1fd2b70"
+  integrity sha512-/zwbvrF5pt8NukbktFat6Zp4Cp15MzhurNXjFQFDWyKDIv4YDVUSwSzvMsq/0KTmt0Db5KCaHuAghbhqvPqgTw==
+  dependencies:
+    "@radix-ui/react-dialog" "^1.1.13"
+    "@radix-ui/react-slot" "^1.0.2"
+    class-variance-authority "^0.7.0"
+    clsx "^2.1.0"
+    lucide-react "^0.510.0"
+    tailwind-merge "^2.2.1"
+
+"@autonomys/auto-wallet@^1.6.9":
+  version "1.6.9"
+  resolved "https://registry.yarnpkg.com/@autonomys/auto-wallet/-/auto-wallet-1.6.9.tgz#f7f6c884e2eae466ebc842fd0f79d22485db403a"
+  integrity sha512-1opH317dVJnnP3m3prEOTVRo53r4qe14l1Gjr4+slXM6Reeh10LwUh9KikBEf8QFyACT7YOWzedk1xZnEm25xw==
+  dependencies:
+    "@autonomys/auto-utils" "^1.6.9"
+    "@talismn/connect-wallets" "^1.2.8"
+    zustand "^5.0.0"
 
 "@babel/code-frame@^7.27.1":
   version "7.27.1"
@@ -1116,7 +1138,7 @@
   resolved "https://registry.yarnpkg.com/@radix-ui/react-context/-/react-context-1.1.2.tgz#61628ef269a433382c364f6f1e3788a6dc213a36"
   integrity sha512-jCi/QKUM2r1Ju5a3J64TH2A5SpKAgh0LpknyqdQ4m6DCV0xJ2HG1xARRwNGPQfi1SLdLWZ1OJz6F4OMBBNiGJA==
 
-"@radix-ui/react-dialog@^1.1.14":
+"@radix-ui/react-dialog@^1.1.13", "@radix-ui/react-dialog@^1.1.14":
   version "1.1.15"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-dialog/-/react-dialog-1.1.15.tgz#1de3d7a7e9a17a9874d29c07f5940a18a119b632"
   integrity sha512-TCglVRtzlffRNxRMEyR36DGBLJpeusFcgMVD9PZEzAKnUs1lKCgX5u9BmC2Yg+LL9MgZDugFFs1Vl+Jp4t/PGw==
@@ -1195,6 +1217,13 @@
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-slot/-/react-slot-1.2.3.tgz#502d6e354fc847d4169c3bc5f189de777f68cfe1"
   integrity sha512-aeNmHnBxbi2St0au6VBVC7JXFlhLlOnvIIlePNniyUNAClzmtAUEY8/pBiK3iHjufOlwA+c20/8jngo7xcrg8A==
+  dependencies:
+    "@radix-ui/react-compose-refs" "1.1.2"
+
+"@radix-ui/react-slot@^1.0.2":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-slot/-/react-slot-1.2.4.tgz#63c0ba05fdf90cc49076b94029c852d7bac1fb83"
+  integrity sha512-Jl+bCv8HxKnlTLVrcDE8zTMJ09R9/ukw4qBs/oZClOfoQk/cOTbDn+NceXfV7j09YPVQUryJPHurafcSg6EVKA==
   dependencies:
     "@radix-ui/react-compose-refs" "1.1.2"
 
@@ -1761,14 +1790,14 @@ chokidar@^3.6.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-class-variance-authority@^0.7.1:
+class-variance-authority@^0.7.0, class-variance-authority@^0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/class-variance-authority/-/class-variance-authority-0.7.1.tgz#4008a798a0e4553a781a57ac5177c9fb5d043787"
   integrity sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==
   dependencies:
     clsx "^2.1.1"
 
-clsx@^2.1.1:
+clsx@^2.1.0, clsx@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
   integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
@@ -2494,6 +2523,11 @@ lucide-react@0.523.0:
   resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.523.0.tgz#a855a3b5b6fdcdee597ecbbd3c16141711a1d974"
   integrity sha512-rUjQoy7egZT9XYVXBK1je9ckBnNp7qzRZOhLQx5RcEp2dCGlXo+mv6vf7Am4LimEcFBJIIZzSGfgTqc9QCrPSw==
 
+lucide-react@^0.510.0:
+  version "0.510.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.510.0.tgz#933b19d893b30ac5cb355e4b91eeefc13088caa3"
+  integrity sha512-p8SQRAMVh7NhsAIETokSqDrc5CHnDLbV29mMnzaXx+Vc/hnqQzwI2r0FMWCcoTXnbw2KEjy48xwpGdEL+ck06Q==
+
 make-dir@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.1.0.tgz#415e967046b3a7f1d185277d84aa58203726a13f"
@@ -3080,6 +3114,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+tailwind-merge@^2.2.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.6.1.tgz#a9d58240f664d21c33c379a092d9a273f833443b"
+  integrity sha512-Oo6tHdpZsGpkKG88HJ8RR1rg/RdnEkQEfMoEk2x1XRI3F1AxeU+ijRXpiVUF4UbLfcxxRGw6TbUINKYdWVsQTQ==
+
 tailwind-merge@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-3.3.1.tgz#a7e7db7c714f6020319e626ecfb7e7dac8393a4b"
@@ -3310,7 +3349,17 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
+zod@^3.24.2:
+  version "3.25.76"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.76.tgz#26841c3f6fd22a6a2760e7ccb719179768471e34"
+  integrity sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==
+
 zustand@5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/zustand/-/zustand-5.0.5.tgz#3e236f6a953142d975336d179bc735d97db17e84"
   integrity sha512-mILtRfKW9xM47hqxGIxCv12gXusoY/xTSHBYApXozR0HmQv299whhBeeAcRy+KrPPybzosvJBCOmVjq6x12fCg==
+
+zustand@^5.0.0:
+  version "5.0.11"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-5.0.11.tgz#99f912e590de1ca9ce6c6d1cab6cdb1f034ab494"
+  integrity sha512-fdZY+dk7zn/vbWNCYmzZULHRrss0jx5pPFiOuMZ/5HJN6Yv3u+1Wswy/4MpZEkEGhtNH+pwxZB8OKgUBPzYAGg==

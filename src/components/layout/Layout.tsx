@@ -1,4 +1,4 @@
-import { WalletButton, WalletModal } from '../wallet';
+import { WalletButton, WalletModal } from '@autonomys/auto-wallet-react';
 import { useState } from 'react';
 
 interface LayoutProps {
