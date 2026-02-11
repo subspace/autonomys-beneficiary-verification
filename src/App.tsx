@@ -7,7 +7,7 @@ function App() {
   return (
     <WalletProvider config={{
       dappName: 'Autonomys Beneficiary Verification',
-      storageKey: 'substrate-wallet-demo-preferences',
+      storageKey: 'autonomys-beneficiary-wallet',
       ss58Prefix: 42,
     }}>
       <BrowserRouter>
