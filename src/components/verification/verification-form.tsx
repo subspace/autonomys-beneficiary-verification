@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from '../ui/button';
 import { Alert, AlertDescription } from '../ui/alert';
-import { useWallet } from '../../hooks/use-wallet';
+import { useWallet } from '@autonomys/auto-wallet-react';
+import type { InjectedExtension } from '@polkadot/extension-inject/types';
 import { validateEvmAddress } from '../../lib/evm-validation';
 import { type SelfCheckSummary } from '../../lib/evm-signing';
 import { getAutonomysApi, type TransactionStatus } from '../../services/autonomys-api';
@@ -75,7 +76,7 @@ export const VerificationForm: React.FC = () => {
       const result = await autonomysApi.submitRemarkTransaction(
         validationResult.normalizedAddress!,
         selectedAccount.address,
-        injector,
+        injector as unknown as InjectedExtension,
         (status) => {
           setTransactionStatus(status);
           if (status.hash) {

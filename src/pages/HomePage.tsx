@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { VerificationForm } from '../components/verification';
 import { FaqSection, type FaqSectionHandle } from '../components/verification/faq-section';
-import { useWallet } from '../hooks/use-wallet';
+import { useWallet } from '@autonomys/auto-wallet-react';
 import { address } from '@autonomys/auto-utils';
 
 export function HomePage() {
