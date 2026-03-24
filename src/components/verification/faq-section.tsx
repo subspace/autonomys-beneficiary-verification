@@ -102,7 +102,7 @@ const faqItems: FaqItem[] = [
           <li>Any address you cannot sign transactions from</li>
         </ul>
         <p className="mt-2">
-          Exchange and custodial addresses are not compatible with vesting contracts and may result in 
+          Exchange and custodial addresses are not compatible with vesting and lockup contracts and will result in
           permanent loss of access to your tokens.
         </p>
       </>
@@ -254,8 +254,9 @@ const faqItems: FaqItem[] = [
       <>
         <p>Changing a beneficiary address is not self-serve and is not guaranteed.</p>
         <p className="mt-2">
-          Any change request requires review by the Subspace Foundation and may not be possible once vesting or 
-          unlocks have begun. You should assume that the address you submit will be treated as final.
+          Lockup and vesting contracts cannot be modified after deployment. Any change request requires review by
+          the Subspace Foundation and will not be possible once contracts have been created. You should assume that
+          the address you submit will be treated as final.
         </p>
       </>
     ),

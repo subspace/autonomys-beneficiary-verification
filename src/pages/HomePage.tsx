@@ -22,7 +22,7 @@ export function HomePage() {
         
         <div className="prose prose-gray max-w-none">
           <p className="text-gray-700 mb-4">
-            As part of the Autonomys token distribution process, every stakeholder must designate an EVM beneficiary wallet to receive vested tokens.
+            As part of the Autonomys token distribution process, every stakeholder must designate an EVM beneficiary wallet to receive their token allocation.
           </p>
           
           <p className="text-gray-700 mb-4">
@@ -122,11 +122,11 @@ export function HomePage() {
                   <ul className="space-y-2">
                     <li className="flex items-start">
                       <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
-                      <strong>Submitting an incorrect EVM address could result in permanent loss of your vested tokens.</strong>
+                      <strong>Submitting an incorrect EVM address will result in permanent loss of your tokens. Lockup and vesting contracts cannot be modified after deployment.</strong>
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
-                      Once submitted, changing your beneficiary address (if possible) will require manual review and may delay your ability to claim tokens.
+                      Once submitted, changing your beneficiary address will require manual review and will not be possible once contracts have been deployed.
                     </li>
                     <li className="flex items-start">
                       <span className="inline-block w-2 h-2 rounded-full bg-red-600 mt-2 mr-3 flex-shrink-0"></span>
