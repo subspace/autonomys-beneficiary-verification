@@ -183,7 +183,7 @@ export const VerificationForm: React.FC = () => {
                   Do <strong>not</strong> use exchange deposit addresses (Binance, Coinbase, etc.) or any custodial wallet where you do not control the private keys.
                 </p>
                 <p>
-                  If you provide an address you cannot sign from, you may permanently lose access to any vested tokens.
+                  If you provide an address you cannot sign from, you will permanently lose access to your tokens. Lockup and vesting contracts cannot be modified after deployment.
                 </p>
               </div>
             </div>
@@ -257,7 +257,7 @@ export const VerificationForm: React.FC = () => {
               <ol className="list-decimal list-inside mt-2 space-y-1 ml-2">
                 <li>It is a wallet you control with access to the private keys;</li>
                 <li>You are responsible for managing that wallet safely and for any subsequent claims;</li>
-                <li>You understand that using an address you cannot sign from may result in permanent loss of your vested tokens.</li>
+                <li>You understand that using an address you cannot sign from will result in permanent loss of your tokens, as contracts cannot be modified after deployment.</li>
                 <li>If you're unsure whether your wallet is appropriate, please contact us at <a href="mailto:claims@subspace.foundation" className="text-blue-600 hover:text-blue-800 underline">claims@subspace.foundation</a> before submitting.</li>
               </ol>
             </div>
