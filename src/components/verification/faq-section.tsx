@@ -1,5 +1,5 @@
-import React, { useState, useImperativeHandle, forwardRef } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React, { useState, useEffect, useImperativeHandle, forwardRef } from 'react';
+import { ChevronDown, Link2, Check } from 'lucide-react';
 
 export interface FaqSectionHandle {
   expand: () => void;
@@ -7,12 +7,14 @@ export interface FaqSectionHandle {
 }
 
 interface FaqItem {
+  id: string;
   question: string;
   answer: React.ReactNode;
 }
 
 const faqItems: FaqItem[] = [
   {
+    id: 'why-here',
     question: "Why am I here?",
     answer: (
       <>
@@ -26,6 +28,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'why-not-existing-wallet',
     question: "Why can't I collect my allocation using the wallet I provided previously?",
     answer: (
       <>
@@ -38,6 +41,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'two-formats',
     question: "Why are there two different wallet address formats?",
     answer: (
       <>
@@ -51,6 +55,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'why-evm',
     question: "Why do I need to provide an EVM address?",
     answer: (
       <>
@@ -62,6 +67,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'what-evm-address',
     question: "What kind of EVM address should I provide?",
     answer: (
       <>
@@ -76,6 +82,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'supported-wallets',
     question: "Which wallets are supported?",
     answer: (
       <>
@@ -92,6 +99,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'unsupported-wallets',
     question: "Which wallets should NOT be used?",
     answer: (
       <>
@@ -109,6 +117,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'safe-multisig',
     question: "How do I use a Safe multisig account as my beneficiary wallet?",
     answer: (
       <>
@@ -151,6 +160,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'same-seed',
     question: "Do I need to use an EVM wallet derived from the same seed as my SS58 wallet?",
     answer: (
       <>
@@ -163,6 +173,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'how-association-works',
     question: "How does the association between my SS58 address and EVM address work?",
     answer: (
       <>
@@ -175,6 +186,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'transaction-cost',
     question: "How do I pay for the association transaction?",
     answer: (
       <>
@@ -191,6 +203,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'remark-permissions',
     question: "Does the on-chain remark move tokens or grant permissions?",
     answer: (
       <>
@@ -206,6 +219,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'after-remark',
     question: "What happens after I submit the remark?",
     answer: (
       <>
@@ -218,6 +232,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'test-wallet',
     question: "Can I test that my EVM wallet is suitable before submitting it?",
     answer: (
       <>
@@ -234,6 +249,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'mistake',
     question: "What if I make a mistake when submitting my EVM address?",
     answer: (
       <>
@@ -249,6 +265,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'change-address',
     question: "Can I change my beneficiary address later?",
     answer: (
       <>
@@ -262,6 +279,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'foundation-custody',
     question: "Does the Subspace Foundation verify or custody my EVM wallet?",
     answer: (
       <>
@@ -277,6 +295,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'what-token',
     question: "What token will I receive, and where will I receive it?",
     answer: (
       <>
@@ -314,6 +333,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'why-wai3',
     question: "Why does vesting use WAI3 instead of AI3 directly?",
     answer: (
       <>
@@ -327,6 +347,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'what-next-wai3',
     question: "What can I do with WAI3 after I claim it?",
     answer: (
       <>
@@ -341,6 +362,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'why-consensus',
     question: "Why might I want to move tokens to the consensus chain?",
     answer: (
       <>
@@ -364,6 +386,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'unwrap',
     question: "How do I unwrap WAI3 to AI3 on Auto EVM?",
     answer: (
       <>
@@ -384,6 +407,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'xdm',
     question: "How do I move AI3 from Auto EVM to the consensus chain?",
     answer: (
       <>
@@ -406,6 +430,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'when-claim',
     question: "When will I be able to claim my tokens?",
     answer: (
       <>
@@ -426,6 +451,7 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'urgency',
     question: "Do I need to complete this step immediately?",
     answer: (
       <>
@@ -450,19 +476,46 @@ interface AccordionItemProps {
 }
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ item, isOpen, onToggle }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLink = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const url = `${window.location.origin}${window.location.pathname}#faq-${item.id}`;
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
   return (
-    <div className="bg-gray-50 border border-gray-200 rounded-lg">
+    <div id={`faq-${item.id}`} className="bg-gray-50 border border-gray-200 rounded-lg scroll-mt-24">
       <button
         type="button"
         onClick={onToggle}
         className="w-full flex items-center justify-between text-left p-4"
       >
         <span className="text-base font-medium text-gray-900 pr-4">{item.question}</span>
-        <ChevronDown 
-          className={`w-5 h-5 text-gray-600 flex-shrink-0 transition-transform duration-200 ${
-            isOpen ? 'transform rotate-180' : ''
-          }`} 
-        />
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <span
+            role="button"
+            tabIndex={0}
+            onClick={handleCopyLink}
+            onKeyDown={(e) => e.key === 'Enter' && handleCopyLink(e as unknown as React.MouseEvent)}
+            className="p-1 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+            title="Copy link to this question"
+          >
+            {copied ? (
+              <Check className="w-4 h-4 text-green-600" />
+            ) : (
+              <Link2 className="w-4 h-4" />
+            )}
+          </span>
+          <ChevronDown
+            className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${
+              isOpen ? 'transform rotate-180' : ''
+            }`}
+          />
+        </div>
       </button>
       {isOpen && (
         <div className="px-4 pb-4 text-gray-700 space-y-2">
@@ -475,26 +528,55 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ item, isOpen, onToggle })
 
 export const FaqSection = forwardRef<FaqSectionHandle>((_, ref) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
+  const [openIds, setOpenIds] = useState<Set<string>>(new Set());
 
-  const handleToggle = (index: number) => {
-    setOpenIndices(prev => {
+  // Handle hash navigation on mount and hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#faq-')) {
+        const faqId = hash.replace('#faq-', '');
+        const item = faqItems.find(item => item.id === faqId);
+        if (item) {
+          setIsExpanded(true);
+          setOpenIds(prev => new Set(prev).add(faqId));
+          // Delay scroll to allow render
+          setTimeout(() => {
+            document.getElementById(`faq-${faqId}`)?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'center'
+            });
+          }, 150);
+        }
+      }
+    };
+
+    // Check on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const handleToggle = (id: string) => {
+    setOpenIds(prev => {
       const next = new Set(prev);
-      if (next.has(index)) {
-        next.delete(index);
+      if (next.has(id)) {
+        next.delete(id);
       } else {
-        next.add(index);
+        next.add(id);
       }
       return next;
     });
   };
 
   const handleExpandAll = () => {
-    setOpenIndices(new Set(faqItems.map((_, i) => i)));
+    setOpenIds(new Set(faqItems.map(item => item.id)));
   };
 
   const handleCollapseAll = () => {
-    setOpenIndices(new Set());
+    setOpenIds(new Set());
   };
 
   useImperativeHandle(ref, () => ({
@@ -518,13 +600,13 @@ export const FaqSection = forwardRef<FaqSectionHandle>((_, ref) => {
         <h2 className="text-lg font-medium text-gray-900">
           {isExpanded ? 'Frequently Asked Questions' : 'Frequently Asked Questions (click to expand)'}
         </h2>
-        <ChevronDown 
+        <ChevronDown
           className={`w-5 h-5 text-gray-600 transition-transform duration-200 ${
             isExpanded ? 'transform rotate-180' : ''
           }`}
         />
       </button>
-      
+
       {isExpanded && (
         <div className="mt-4">
           <div className="flex items-center justify-between mb-4">
@@ -549,14 +631,14 @@ export const FaqSection = forwardRef<FaqSectionHandle>((_, ref) => {
               </button>
             </div>
           </div>
-          
+
           <div className="space-y-3">
-            {faqItems.map((item, index) => (
+            {faqItems.map((item) => (
               <AccordionItem
-                key={index}
+                key={item.id}
                 item={item}
-                isOpen={openIndices.has(index)}
-                onToggle={() => handleToggle(index)}
+                isOpen={openIds.has(item.id)}
+                onToggle={() => handleToggle(item.id)}
               />
             ))}
           </div>
