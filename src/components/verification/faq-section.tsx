@@ -117,6 +117,53 @@ const faqItems: FaqItem[] = [
     ),
   },
   {
+    id: 'institutional-custody',
+    question: "Are any institutional custody options available?",
+    answer: (
+      <>
+        <p>
+          The Subspace Foundation has engaged Fordefi as its custody solution. Fordefi have integrated
+          Autonomys EVM into their platform. Additionally, a Safe deployment is live on Auto EVM at{' '}
+          <a
+            href="https://safe.autonomys.xyz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-800 underline"
+          >
+            https://safe.autonomys.xyz/
+          </a>
+        </p>
+        <p className="mt-2">
+          If you prefer a custody solution that works with standard EVM environments it's possible it will
+          work but has not yet been tested. Your feedback can help us supplement the below table.
+        </p>
+        <div className="mt-3 overflow-x-auto">
+          <table className="min-w-full text-sm border border-gray-200 rounded">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="px-4 py-2 text-left font-medium border-b border-gray-200">Provider</th>
+                <th className="px-4 py-2 text-left font-medium border-b border-gray-200">Supported</th>
+                <th className="px-4 py-2 text-left font-medium border-b border-gray-200">Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-100">
+                <td className="px-4 py-2">Fordefi</td>
+                <td className="px-4 py-2">✅</td>
+                <td className="px-4 py-2">Tested by Subspace Foundation</td>
+              </tr>
+              <tr>
+                <td className="px-4 py-2">Fireblocks</td>
+                <td className="px-4 py-2">❌</td>
+                <td className="px-4 py-2">Tested by stakeholder</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </>
+    ),
+  },
+  {
     id: 'safe-multisig',
     question: "How do I use a Safe multisig account as my beneficiary wallet?",
     answer: (
