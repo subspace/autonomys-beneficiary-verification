@@ -1,13 +1,20 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ClaimFaqSection } from '../components/claim';
 
-const IMAGE_BASE_PATH = '/images/claim-guide';
+type ClaimFlow = 'vesting' | 'lockup';
 
-export function ClaimGuidePage() {
-  useEffect(() => {
-    document.title = 'How to Claim AI3 Tokens | Autonomys Beneficiary Portal';
-  }, []);
-  const steps = [
+interface StepData {
+  number: number;
+  title: string;
+  description: React.ReactNode;
+  images: string[];
+}
+
+const VESTING_IMAGE_BASE = '/images/claim-guide';
+const LOCKUP_IMAGE_BASE = '/images/claim-guide/lockup';
+
+function buildVestingSteps(): StepData[] {
+  return [
     {
       number: 1,
       title: 'Visit Hedgey and Connect Your Wallet',
@@ -111,16 +118,181 @@ export function ClaimGuidePage() {
       ],
     },
   ];
+}
+
+function buildLockupSteps(): StepData[] {
+  return [
+    {
+      number: 1,
+      title: 'Visit Hedgey and Connect Your Wallet',
+      description: (
+        <>
+          Go to{' '}
+          <a
+            href="https://app.hedgey.finance"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-800 underline font-medium"
+          >
+            app.hedgey.finance
+          </a>
+          {' '}and click <strong>"Connect a wallet"</strong> in the top right. Select your beneficiary wallet
+          (this guide uses MetaMask as an example, but other EVM wallets are supported).
+        </>
+      ),
+      images: [
+        'hedgey-connect-wallet.png',
+        'hedgey-wallet-select.png',
+        'hedgey-wallet-connect-metamask.png',
+      ],
+    },
+    {
+      number: 2,
+      title: 'Select the Autonomys EVM Network',
+      description: (
+        <>
+          Ensure the <strong>Autonomys EVM</strong> network is selected in your wallet and in the Hedgey interface.
+        </>
+      ),
+      images: [
+        'hedgey-network-select.png',
+        'hedgey-network-dropdown.png',
+      ],
+    },
+    {
+      number: 3,
+      title: 'Navigate to Investor Lockups',
+      description: (
+        <>
+          Click on <strong>"Investor Lockups"</strong> in the left sidebar menu.
+        </>
+      ),
+      images: [
+        'hedgey-investor-lockups-menu.png',
+      ],
+    },
+    {
+      number: 4,
+      title: 'View Your Lockup Details',
+      description: (
+        <>
+          Find your lockup in the list and click <strong>"View Details"</strong> on the lockup you want to interact with.
+          You'll see information including total tokens, unlock schedule, and available amount to claim.
+        </>
+      ),
+      images: [
+        'hedgey-lockup-details.png',
+      ],
+    },
+    {
+      number: 5,
+      title: 'Claim Your Tokens',
+      description: (
+        <>
+          Click the <strong>"Claim"</strong> button. A dialog will appear showing the amount of tokens available to claim.
+          Click <strong>"Claim WAI3"</strong> to proceed.
+        </>
+      ),
+      images: [
+        'hedgey-lockup-claim-dialog.png',
+      ],
+    },
+    {
+      number: 6,
+      title: 'Confirm the Transaction',
+      description: (
+        <>
+          Your wallet will prompt you to confirm the transaction. Review the details and click <strong>"Confirm"</strong>.
+          You'll see a small network fee in AI3.
+        </>
+      ),
+      images: [
+        'hedgey-lockup-confirm-transaction.png',
+      ],
+    },
+    {
+      number: 7,
+      title: 'Transaction Complete',
+      description: (
+        <>
+          When successful, you'll see a confirmation toast at the bottom of the screen.
+        </>
+      ),
+      images: [
+        'hedgey-lockup-success.png',
+      ],
+    },
+  ];
+}
+
+const flowConfig = {
+  lockup: {
+    label: 'Investor Lockup',
+    sublabel: 'Stakeholders',
+    pageTitle: 'How to Claim AI3 Tokens — Investor Lockup | Autonomys Beneficiary Portal',
+    heading: 'How to Claim AI3 Tokens from an Investor Lockup',
+    description: 'Follow these steps to claim your available AI3 tokens from your investor lockup allocation on the Hedgey portal.',
+    imageBase: LOCKUP_IMAGE_BASE,
+    steps: buildLockupSteps,
+  },
+  vesting: {
+    label: 'Vesting Plan',
+    sublabel: 'Ambassadors & Team Members',
+    pageTitle: 'How to Claim AI3 Tokens — Vesting Plan | Autonomys Beneficiary Portal',
+    heading: 'How to Claim AI3 Tokens from a Vesting Plan',
+    description: 'Follow these steps to claim your available AI3 tokens from your vesting plan allocation on the Hedgey portal.',
+    imageBase: VESTING_IMAGE_BASE,
+    steps: buildVestingSteps,
+  },
+} as const;
+
+export function ClaimGuidePage() {
+  const [activeFlow, setActiveFlow] = useState<ClaimFlow>('lockup');
+  const config = flowConfig[activeFlow];
+  const steps = config.steps();
+  const imageBase = activeFlow === 'vesting' ? VESTING_IMAGE_BASE : config.imageBase;
+
+  useEffect(() => {
+    document.title = config.pageTitle;
+  }, [config.pageTitle]);
 
   return (
     <div className="space-y-6">
+      {/* Flow Toggle */}
+      <div className="bg-white rounded-lg shadow-sm p-4">
+        <p className="text-sm text-gray-600 mb-3 text-center">Select your claim type:</p>
+        <div className="flex justify-center">
+          <div className="inline-flex rounded-full bg-gray-100 p-1">
+            {(Object.entries(flowConfig) as [ClaimFlow, typeof flowConfig[ClaimFlow]][]).map(([key, cfg]) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setActiveFlow(key)}
+                className={`
+                  px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200
+                  ${activeFlow === key
+                    ? 'bg-blue-600 text-white shadow-sm'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
+                  }
+                `}
+              >
+                <span className="block">{cfg.label}</span>
+                <span className={`block text-xs mt-0.5 ${activeFlow === key ? 'text-blue-100' : 'text-gray-400'}`}>
+                  {cfg.sublabel}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Page Header */}
       <div className="bg-white rounded-lg shadow-sm p-6">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          How to Claim AI3 Tokens from Hedgey
+          {config.heading}
         </h2>
         <p className="text-gray-600">
-          Follow these steps to claim your available AI3 tokens from your vesting allocation on the Hedgey portal.
+          {config.description}
         </p>
       </div>
 
@@ -158,10 +330,10 @@ export function ClaimGuidePage() {
         <h3 className="text-lg font-medium text-gray-900 mb-6">
           Step-by-Step Guide
         </h3>
-        
+
         <div className="space-y-8">
           {steps.map((step) => (
-            <div key={step.number} className="border-l-4 border-blue-500 pl-6">
+            <div key={`${activeFlow}-${step.number}`} className="border-l-4 border-blue-500 pl-6">
               <div className="flex items-center mb-2">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold mr-3">
                   {step.number}
@@ -170,11 +342,11 @@ export function ClaimGuidePage() {
                   {step.title}
                 </h4>
               </div>
-              
+
               <p className="text-gray-700 mb-4 ml-11">
                 {step.description}
               </p>
-              
+
               {/* Screenshots */}
               <div className="ml-11">
                 {step.images.length > 0 ? (
@@ -182,7 +354,7 @@ export function ClaimGuidePage() {
                     {step.images.map((image, index) => (
                       <img
                         key={image}
-                        src={`${IMAGE_BASE_PATH}/${image}`}
+                        src={`${imageBase}/${image}`}
                         alt={`Step ${step.number}.${index + 1}: ${step.title}`}
                         className="rounded-lg border border-gray-200 shadow-sm max-w-full"
                       />
@@ -207,7 +379,7 @@ export function ClaimGuidePage() {
       </div>
 
       {/* FAQ Section */}
-      <ClaimFaqSection />
+      <ClaimFaqSection activeFlow={activeFlow} />
     </div>
   );
 }
