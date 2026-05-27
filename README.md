@@ -163,7 +163,7 @@ src/
 ├── index.css                       # Global styles
 ├── pages/
 │   ├── HomePage.tsx                # Main verification page (wallet status + form + FAQ)
-│   ├── ClaimGuidePage.tsx          # Token claim instructions page
+│   ├── ClaimGuidePage.tsx          # Token claim guide with Investor Lockup / Vesting Plan toggle
 │   └── index.ts
 ├── components/
 │   ├── layout/
@@ -231,7 +231,7 @@ The `AutonomysApiService` in `src/services/autonomys-api.ts` manages the WebSock
 | Route | Page | Wallet UI |
 |-------|------|-----------|
 | `/` | `HomePage` — verification form, wallet status, FAQ | Shown |
-| `/claim` | `ClaimGuidePage` — token claim instructions | Hidden |
+| `/claim` | `ClaimGuidePage` — token claim guide (Investor Lockup / Vesting Plan) | Hidden |
 
 ## Dependencies
 

@@ -226,6 +226,15 @@ function buildLockupSteps(): StepData[] {
 }
 
 const flowConfig = {
+  lockup: {
+    label: 'Investor Lockup',
+    sublabel: 'Stakeholders',
+    pageTitle: 'How to Claim AI3 Tokens — Investor Lockup | Autonomys Beneficiary Portal',
+    heading: 'How to Claim AI3 Tokens from an Investor Lockup',
+    description: 'Follow these steps to claim your available AI3 tokens from your investor lockup allocation on the Hedgey portal.',
+    imageBase: LOCKUP_IMAGE_BASE,
+    steps: buildLockupSteps,
+  },
   vesting: {
     label: 'Vesting Plan',
     sublabel: 'Ambassadors & Team Members',
@@ -235,19 +244,10 @@ const flowConfig = {
     imageBase: VESTING_IMAGE_BASE,
     steps: buildVestingSteps,
   },
-  lockup: {
-    label: 'Investor Lockup',
-    sublabel: 'All Other Stakeholders',
-    pageTitle: 'How to Claim AI3 Tokens — Investor Lockup | Autonomys Beneficiary Portal',
-    heading: 'How to Claim AI3 Tokens from an Investor Lockup',
-    description: 'Follow these steps to claim your available AI3 tokens from your investor lockup allocation on the Hedgey portal.',
-    imageBase: LOCKUP_IMAGE_BASE,
-    steps: buildLockupSteps,
-  },
 } as const;
 
 export function ClaimGuidePage() {
-  const [activeFlow, setActiveFlow] = useState<ClaimFlow>('vesting');
+  const [activeFlow, setActiveFlow] = useState<ClaimFlow>('lockup');
   const config = flowConfig[activeFlow];
   const steps = config.steps();
   const imageBase = activeFlow === 'vesting' ? VESTING_IMAGE_BASE : config.imageBase;
