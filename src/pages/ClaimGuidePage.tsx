@@ -229,7 +229,7 @@ const flowConfig = {
   lockup: {
     label: 'Investor Lockup',
     sublabel: 'Stakeholders',
-    pageTitle: 'How to Claim AI3 Tokens — Investor Lockup | Autonomys Beneficiary Portal',
+    pageTitle: 'How to Claim AI3 Tokens - Investor Lockup | Autonomys Beneficiary Portal',
     heading: 'How to Claim AI3 Tokens from an Investor Lockup',
     description: 'Follow these steps to claim your available AI3 tokens from your investor lockup allocation on the Hedgey portal.',
     imageBase: LOCKUP_IMAGE_BASE,
@@ -238,7 +238,7 @@ const flowConfig = {
   vesting: {
     label: 'Vesting Plan',
     sublabel: 'Ambassadors & Team Members',
-    pageTitle: 'How to Claim AI3 Tokens — Vesting Plan | Autonomys Beneficiary Portal',
+    pageTitle: 'How to Claim AI3 Tokens - Vesting Plan | Autonomys Beneficiary Portal',
     heading: 'How to Claim AI3 Tokens from a Vesting Plan',
     description: 'Follow these steps to claim your available AI3 tokens from your vesting plan allocation on the Hedgey portal.',
     imageBase: VESTING_IMAGE_BASE,

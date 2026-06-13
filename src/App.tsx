@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { WalletProvider } from '@autonomys/auto-wallet-react';
 import { Layout } from './components/layout';
-import { HomePage, ClaimGuidePage } from './pages';
+import { HomePage, ClaimGuidePage, StakingGuidePage } from './pages';
 
 function App() {
   return (
@@ -25,6 +25,14 @@ function App() {
             element={
               <Layout showWallet={false}>
                 <ClaimGuidePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/staking"
+            element={
+              <Layout showWallet={false}>
+                <StakingGuidePage />
               </Layout>
             }
           />
