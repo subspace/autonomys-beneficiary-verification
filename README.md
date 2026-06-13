@@ -23,7 +23,7 @@ Live at [beneficiary.subspace.foundation](https://beneficiary.subspace.foundatio
 - **TypeScript** — Full type safety throughout the application
 - **React 19** with functional components and hooks
 - **Vite 7** — Fast builds and development server
-- **react-router-dom 7** — Client-side routing (`/` and `/claim` pages)
+- **react-router-dom 7** — Client-side routing (`/`, `/claim`, and `/staking` pages)
 - **Tailwind CSS** with Radix UI components for a responsive UI
 
 ## Quick Start
@@ -164,6 +164,7 @@ src/
 ├── pages/
 │   ├── HomePage.tsx                # Main verification page (wallet status + form + FAQ)
 │   ├── ClaimGuidePage.tsx          # Token claim guide with Investor Lockup / Vesting Plan toggle
+│   ├── StakingGuidePage.tsx        # Staking guide with Stake / Unstake & Withdraw toggle
 │   └── index.ts
 ├── components/
 │   ├── layout/
@@ -176,6 +177,9 @@ src/
 │   │   └── index.ts
 │   ├── claim/
 │   │   ├── ClaimFaqSection.tsx     # Claim guide FAQ
+│   │   └── index.ts
+│   ├── staking/
+│   │   ├── StakingFaqSection.tsx   # Staking guide FAQ
 │   │   └── index.ts
 │   └── ui/                         # Base UI components (Button, Dialog, Alert)
 ├── lib/
@@ -232,6 +236,7 @@ The `AutonomysApiService` in `src/services/autonomys-api.ts` manages the WebSock
 |-------|------|-----------|
 | `/` | `HomePage` — verification form, wallet status, FAQ | Shown |
 | `/claim` | `ClaimGuidePage` — token claim guide (Investor Lockup / Vesting Plan) | Hidden |
+| `/staking` | `StakingGuidePage` — staking guide (Stake / Unstake & Withdraw) | Hidden |
 
 ## Dependencies
 
