@@ -195,7 +195,7 @@ const flowConfig = {
   },
   unstake: {
     label: 'Unstake & Withdraw',
-    sublabel: 'Exit your position',
+    sublabel: 'Reclaim your tokens',
     pageTitle: 'How to Unstake AI3 Tokens | Autonomys Beneficiary Portal',
     heading: 'How to Unstake and Withdraw AI3 Tokens',
     description:
