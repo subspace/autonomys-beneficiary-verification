@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { WalletProvider } from '@autonomys/auto-wallet-react';
 import { Layout } from './components/layout';
-import { HomePage, ClaimGuidePage, StakingGuidePage } from './pages';
+import { HomePage, ClaimGuidePage, StakingGuidePage, XdmGuidePage, WrapGuidePage } from './pages';
 
 function App() {
   return (
@@ -29,10 +29,28 @@ function App() {
             }
           />
           <Route
-            path="/staking"
+            path="/stake"
             element={
               <Layout showWallet={false}>
                 <StakingGuidePage />
+              </Layout>
+            }
+          />
+          {/* Redirect the previous /staking route to /stake so existing links keep working */}
+          <Route path="/staking" element={<Navigate to="/stake" replace />} />
+          <Route
+            path="/xdm"
+            element={
+              <Layout showWallet={false}>
+                <XdmGuidePage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/wrap"
+            element={
+              <Layout showWallet={false}>
+                <WrapGuidePage />
               </Layout>
             }
           />

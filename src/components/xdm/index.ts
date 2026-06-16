@@ -1,0 +1,1 @@
+export { XdmFaqSection } from './XdmFaqSection';
