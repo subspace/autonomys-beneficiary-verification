@@ -1,0 +1,1 @@
+export { WrapFaqSection } from './WrapFaqSection';

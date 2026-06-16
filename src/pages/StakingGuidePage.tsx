@@ -54,9 +54,9 @@ function buildStakeSteps(): StepData[] {
       title: 'Choose an Operator and Click "Stake"',
       description: (
         <>
-          Click <strong>"Stake"</strong> on the operator you want to nominate. You'll be taken to a page
-          titled <strong>"Stake to [operator name]"</strong> showing a summary of the operator alongside
-          the staking form.
+          Click <strong>"Stake"</strong> on the operator you want to nominate. You'll be taken to that
+          operator's staking page (headed <strong>"Stake to"</strong> followed by the operator's name),
+          which shows a summary of the operator alongside the staking form.
         </>
       ),
       images: ['staking-stake-page.png'],
@@ -132,7 +132,7 @@ function buildUnstakeSteps(): StepData[] {
       title: 'Choose Partial or Full Withdrawal',
       description: (
         <>
-          On the <strong>"Withdraw from [operator name]"</strong> page, choose a withdrawal method:{' '}
+          On the withdrawal page for that operator, choose a withdrawal method:{' '}
           <strong>"Partial"</strong> (enter the total amount you want to receive) or{' '}
           <strong>"Full Withdrawal"</strong>. Note: if a partial withdrawal would leave your remaining
           stake below the operator's minimum, the portal will warn you and convert it into a full
@@ -163,7 +163,7 @@ function buildUnstakeSteps(): StepData[] {
           Withdrawn funds have a <strong>locking period of 14,400 domain blocks (~1 day)</strong> before
           they can be claimed. Track progress in the <strong>"Pending Operations"</strong> card on your
           Dashboard: the withdrawal shows as <strong>"Withdrawing"</strong> with a countdown
-          (e.g. "Ready in ~Xh Ym"), then changes to <strong>"Unlockable"</strong> when ready.
+          (for example, "Ready in ~23h 59m"), then changes to <strong>"Unlockable"</strong> when ready.
         </>
       ),
       images: ['unstake-pending-operations.png'],
@@ -273,7 +273,7 @@ export function StakingGuidePage() {
             <ol className="list-decimal list-inside mt-2 space-y-1 text-amber-800">
               <li>
                 <a
-                  href="/claim#faq-unwrap"
+                  href="/wrap"
                   className="text-amber-700 hover:text-amber-900 underline font-medium"
                 >
                   Unwrap your WAI3 to native AI3
@@ -282,7 +282,7 @@ export function StakingGuidePage() {
               </li>
               <li>
                 <a
-                  href="/claim#faq-xdm"
+                  href="/xdm"
                   className="text-amber-700 hover:text-amber-900 underline font-medium"
                 >
                   Bridge AI3 from Auto EVM to the consensus chain
