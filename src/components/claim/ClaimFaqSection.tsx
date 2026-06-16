@@ -74,8 +74,18 @@ function buildFaqItems(flow: ClaimFlow): FaqItem[] {
           <p>After claiming WAI3 on Auto EVM, you have several options:</p>
           <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
             <li>Hold WAI3 on Auto EVM</li>
-            <li>Unwrap WAI3 to native AI3 on Auto EVM</li>
-            <li>Bridge AI3 from Auto EVM to the Autonomys consensus chain using XDM</li>
+            <li>
+              <a href="/wrap" className="text-blue-600 hover:text-blue-800 underline">
+                Unwrap WAI3 to native AI3
+              </a>
+              {' '}on Auto EVM
+            </li>
+            <li>
+              <a href="/xdm" className="text-blue-600 hover:text-blue-800 underline">
+                Bridge AI3 to the Autonomys consensus chain
+              </a>
+              {' '}using XDM
+            </li>
           </ul>
           <p className="mt-2">Unwrapping and bridging are optional steps that you control.</p>
         </>
@@ -88,16 +98,21 @@ function buildFaqItems(flow: ClaimFlow): FaqItem[] {
         <>
           <p>You may want to move AI3 to the consensus chain if you plan to:</p>
           <ul className="list-disc list-inside mt-2 space-y-1 ml-2">
-            <li>Stake AI3 to earn rewards in{' '}
-                <a
-                  href="https://forum.autonomys.xyz/t/boosting-early-staking-the-guardians-of-growth-initiative/4962"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 underline"
-                >
-                  Guardians of Growth
-                </a>
-              </li>
+            <li>
+              <a href="/stake" className="text-blue-600 hover:text-blue-800 underline">
+                Stake AI3 to earn rewards
+              </a>
+              {' '}(see the{' '}
+              <a
+                href="https://forum.autonomys.xyz/t/boosting-early-staking-the-guardians-of-growth-initiative/4962"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 underline"
+              >
+                Guardians of Growth
+              </a>
+              {' '}initiative)
+            </li>
             <li>Participate in consensus-layer activities</li>
             <li>Interact with exchanges or services that support the consensus chain but not Auto EVM</li>
           </ul>
@@ -112,7 +127,11 @@ function buildFaqItems(flow: ClaimFlow): FaqItem[] {
         <>
           <p>WAI3 can be unwrapped into native Auto EVM AI3 using the official unwrapping process.</p>
           <p className="mt-2">
-            A step-by-step guide is available in the {' '}
+            Follow our{' '}
+            <a href="/wrap" className="text-blue-600 hover:text-blue-800 underline font-medium">
+              step-by-step unwrap guide
+            </a>
+            {' '}for the full walkthrough. For more technical detail, see the{' '}
             <a
               href="https://develop.autonomys.xyz/evm/wrapping_ai3#unwrapping-wai3"
               target="_blank"
@@ -154,14 +173,10 @@ function buildFaqItems(flow: ClaimFlow): FaqItem[] {
       answer: (
         <>
           <p>
-            After unwrapping WAI3 into native Auto EVM AI3, you can bridge AI3 to the consensus chain using{' '}
-            <a
-              href="https://docs.autonomys.xyz/xdm"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800 underline"
-            >
-              XDM (Cross-Domain Messaging)
+            After unwrapping WAI3 into native Auto EVM AI3, you can bridge AI3 to the consensus chain using
+            XDM (Cross-Domain Messaging). Follow our{' '}
+            <a href="/xdm" className="text-blue-600 hover:text-blue-800 underline font-medium">
+              step-by-step XDM guide
             </a>.
           </p>
           <p className="mt-2">

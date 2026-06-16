@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ClaimFaqSection } from '../components/claim';
+import { JourneyNav, JourneyNextStep } from '../components/journey';
 
 type ClaimFlow = 'vesting' | 'lockup';
 
@@ -258,6 +259,9 @@ export function ClaimGuidePage() {
 
   return (
     <div className="space-y-6">
+      {/* Journey progress */}
+      <JourneyNav current="claim" />
+
       {/* Flow Toggle */}
       <div className="bg-white rounded-lg shadow-sm p-4">
         <p className="text-sm text-gray-600 mb-3 text-center">Select your claim type:</p>
@@ -377,6 +381,9 @@ export function ClaimGuidePage() {
           ))}
         </div>
       </div>
+
+      {/* Next step */}
+      <JourneyNextStep current="claim" />
 
       {/* FAQ Section */}
       <ClaimFaqSection activeFlow={activeFlow} />

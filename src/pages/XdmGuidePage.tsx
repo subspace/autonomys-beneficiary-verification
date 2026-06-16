@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { XdmFaqSection } from '../components/xdm';
+import { JourneyNav, JourneyNextStep } from '../components/journey';
 
 type XdmFlow = 'evmToConsensus' | 'consensusToEvm';
 
@@ -194,6 +195,9 @@ export function XdmGuidePage() {
 
   return (
     <div className="space-y-6">
+      {/* Journey progress */}
+      <JourneyNav current="bridge" />
+
       {/* Flow Toggle */}
       <div className="bg-white rounded-lg shadow-sm p-4">
         <p className="text-sm text-gray-600 mb-3 text-center">Which direction are you transferring?</p>
@@ -315,6 +319,9 @@ export function XdmGuidePage() {
           ))}
         </div>
       </div>
+
+      {/* Next step */}
+      <JourneyNextStep current="bridge" />
 
       {/* FAQ Section */}
       <XdmFaqSection />
