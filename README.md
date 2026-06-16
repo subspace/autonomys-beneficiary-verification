@@ -189,6 +189,9 @@ src/
 │   ├── wrap/
 │   │   ├── WrapFaqSection.tsx      # Wrap guide FAQ
 │   │   └── index.ts
+│   ├── journey/
+│   │   ├── JourneyNav.tsx          # Claim → Unwrap → Bridge → Stake stepper + next-step CTA
+│   │   └── index.ts
 │   └── ui/                         # Base UI components (Button, Dialog, Alert)
 ├── lib/
 │   ├── evm-validation.ts           # EIP-55 checksum validation (@noble/hashes)

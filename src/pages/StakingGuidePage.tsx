@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { StakingFaqSection } from '../components/staking';
+import { JourneyNav, JourneyNextStep } from '../components/journey';
 
 type StakingFlow = 'stake' | 'unstake';
 
@@ -215,6 +216,9 @@ export function StakingGuidePage() {
 
   return (
     <div className="space-y-6">
+      {/* Journey progress */}
+      <JourneyNav current="stake" />
+
       {/* Flow Toggle */}
       <div className="bg-white rounded-lg shadow-sm p-4">
         <p className="text-sm text-gray-600 mb-3 text-center">What would you like to do?</p>
@@ -338,6 +342,9 @@ export function StakingGuidePage() {
           ))}
         </div>
       </div>
+
+      {/* Next step */}
+      <JourneyNextStep current="stake" />
 
       {/* FAQ Section */}
       <StakingFaqSection />
